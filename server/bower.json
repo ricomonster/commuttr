@@ -1,0 +1,8 @@
+{
+  "name": "mark41",
+  "devDependencies": {
+    "bootstrap": "~3.3.4",
+    "font-awesome": "~4.3.0",
+    "jquery": "~2.1.3"
+  }
+}
