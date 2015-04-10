@@ -58,6 +58,21 @@
             <ion-view>
                 <ion-content class="padding">
                     <h3>Reviews</h3>
+                    <div class="list">
+                        <a class="item item-avatar" href="#" ng-repeat="review in route.reviews">
+                            <img src="http://41.media.tumblr.com/4883a07dc16a879663ce1c8f97352811/tumblr_mldfty8fh41qcnibxo2_540.png">
+                            <h2>{{ review.title }}</h2>
+                            <p>{{ review.content }}</p>
+                        </a>
+                    </div>
+                </ion-content>
+            </ion-view>
+        </ion-tab>
+
+        <ion-tab title="How to get there?" icon="ion-help">
+            <ion-view>
+                <ion-content class="padding">
+                    <h3>How to get there</h3>
                 </ion-content>
             </ion-view>
         </ion-tab>

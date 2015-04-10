@@ -54,7 +54,9 @@ class DbRouteRepository implements RouteRepositoryInterface
      */
     public function findById($routeId)
     {
-        return Route::with(['coordinates'])
+        return Route::with(['coordinates', 'reviews' => function($query) {
+                $query->with(['user']);
+            }])
             ->where('id', '=', $routeId)
             ->first();
     }
@@ -67,7 +69,9 @@ class DbRouteRepository implements RouteRepositoryInterface
      */
     public function search($keyword)
     {
-        return Route::with(['coordinates'])
+        return Route::with(['coordinates', 'reviews' => function($query) {
+                $query->with(['user']);
+            }])
             ->orWhere('route_name', 'LIKE', '%'.$keyword.'%')
             ->orWhere('to', 'LIKE', '%'.$keyword.'%')
             ->get();

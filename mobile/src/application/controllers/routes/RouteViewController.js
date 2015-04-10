@@ -32,15 +32,12 @@ CommuttrApp.controller('RouteViewController', ['$ionicLoading', '$scope', '$stat
     };
 
     var plotRoute = function(userPosition) {
-        // set the markers
         var mapOptions = {
             center: new google.maps.LatLng(userPosition.coords.latitude, userPosition.coords.longitude),
-            zoom: 4,
             mapTypeId: google.maps.MapTypeId.ROADMAP
         };
 
         var map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions),
-            infoWindow = new google.maps.InfoWindow(),
             latitudeLongitude = [],
             latitudeLongitudeBounds = new google.maps.LatLngBounds();
 
@@ -48,25 +45,9 @@ CommuttrApp.controller('RouteViewController', ['$ionicLoading', '$scope', '$stat
         var markers = $scope.route.coordinates;
 
         for (var i = 0; i < markers.length; i++) {
-            var data = markers[i],
-                myLatlng = new google.maps.LatLng(data.latitude, data.longitude);
-
-            latitudeLongitude.push(myLatlng);
-
-            var marker = new google.maps.Marker({
-                position: myLatlng,
-                map: map,
-                title: data.title
-            });
-
-            latitudeLongitudeBounds.extend(marker.position);
-            //
-            //(function (marker, data) {
-            //    google.maps.event.addListener(marker, "click", function (e) {
-            //        infoWindow.setContent(data.description);
-            //        infoWindow.open(map, marker);
-            //    });
-            //})(marker, data);
+            latitudeLongitude.push(new google.maps.LatLng(markers[i].latitude, markers[i].longitude));
+            // setting map bounds
+            latitudeLongitudeBounds.extend(new google.maps.LatLng(markers[i].latitude, markers[i].longitude));
         }
 
         map.setCenter(latitudeLongitudeBounds.getCenter());
@@ -90,7 +71,8 @@ CommuttrApp.controller('RouteViewController', ['$ionicLoading', '$scope', '$stat
                 var request = {
                     origin: latitudeLongitude[i],
                     destination: latitudeLongitude[i + 1],
-                    travelMode: google.maps.DirectionsTravelMode.DRIVING
+                    travelMode: google.maps.DirectionsTravelMode.DRIVING,
+
                 };
 
                 directionService.route(request, function(response, status) {
@@ -103,11 +85,11 @@ CommuttrApp.controller('RouteViewController', ['$ionicLoading', '$scope', '$stat
                         polyline.setMap(map);
                         path.push(polyline);
                     }
-
-                    $ionicLoading.hide();
                 });
             }
         }
+
+        $ionicLoading.hide();
     };
 
     initialize();

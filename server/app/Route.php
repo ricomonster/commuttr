@@ -28,4 +28,14 @@ class Route extends Model {
     {
         return $this->hasMany('Commuttr\Coordinates');
     }
+
+    /**
+     * Reviews Relationship
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function reviews()
+    {
+        return $this->hasMany('Commuttr\Review');
+    }
 }

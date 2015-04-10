@@ -29,6 +29,10 @@ class CommuttrServiceProvider extends ServiceProvider {
             'Commuttr\Repositories\Route\RouteRepositoryInterface',
             'Commuttr\Repositories\Route\DbRouteRepository');
 
+        $this->app->bind(
+            'Commuttr\Repositories\Review\ReviewRepositoryInterface',
+            'Commuttr\Repositories\Review\DbReviewRepository');
+
 		$this->app->bind(
             'Commuttr\Repositories\User\UserRepositoryInterface',
             'Commuttr\Repositories\User\DbUserRepository');

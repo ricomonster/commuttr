@@ -13,7 +13,10 @@
                 </form>
             </div>
             <a class="item" ng-repeat="result in results" href="#/route/view/{{result.id}}" nav-direction="forward">
-                {{result.route_name}}
+                <h3>{{result.route_name}}</h3>
+                <p>
+                    <span>Ride via {{ result.mode_of_transportation }}</span>
+                </p>
             </a>
         </div>
     </ion-content>

@@ -331,6 +331,20 @@
             return coordinates;
         };
 
+        var clearTheMap = function() {
+            // remove markers
+            for (var i = 0; i < markers.length; i++) {
+                markers[i].setMap(null);
+            }
+
+            // remove the polyline
+            for (var k = 0; k < polylines.length; k++) {
+                polylines[k].setMap(null);
+            }
+
+            markers = [], polylines = [];
+        }
+
         $('#create_route').on('submit', function(e) {
             e.preventDefault();
 
@@ -348,23 +362,17 @@
                     vice_versa          : ($(this).find('input[name="vice_versa"]').is(":checked")) ? 1 : 0,
                     mode_of_transportation : $(this).find('select[name="mode_of_transportation"]').val()
                 }
-            })
+            }).done(function(response) {
+                if (response.data) {
+                    clearTheMap();
+                    alert('Route '+ response.data.route.route_name + ' was successfully created');
+                }
+            });
         });
 
         $('#clear_markers').on('click', function(e) {
             e.preventDefault();
-
-            // remove markers
-            for (var i = 0; i < markers.length; i++) {
-                markers[i].setMap(null);
-            }
-
-            // remove the polyline
-            for (var k = 0; k < polylines.length; k++) {
-                polylines[k].setMap(null);
-            }
-
-            markers = [], polylines = [];
+            clearTheMap();
         });
 
         if (navigator.geolocation) {

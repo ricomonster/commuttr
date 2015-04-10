@@ -36,6 +36,10 @@ Route::group(['prefix' => 'api/v1.0', 'middlware' => 'cors-filter'], function() 
         Route::post('login', 'Api\ApiAuthController@login');
     });
 
+    Route::group(['prefix' => 'reviews'], function() {
+       Route::post('create', 'Api\ApiReviewsController@create');
+    });
+
     Route::group(['prefix' => 'routes'], function() {
         Route::get('get_route', 'Api\ApiRoutesController@getRoute');
         Route::get('search', 'Api\ApiRoutesController@search');
