@@ -11,22 +11,29 @@ use Validator;
 class DbRouteRepository implements RouteRepositoryInterface
 {
     /**
-     * Creates a new route
+     * Create a new route
      *
+     * @param $contributorId
      * @param $name
      * @param $to
      * @param $from
+     * @param $modeOfTransportation
+     * @param $averageFare
+     * @param $averageTravelTime
      * @param $viceVersa
      * @return mixed
      */
-    public function create($contributorId, $name, $to, $from, $viceVersa)
+    public function create($contributorId, $name, $to, $from, $modeOfTransportation, $averageFare, $averageTravelTime, $viceVersa)
     {
         return Route::create([
-            'contributor_id'    => $contributorId,
-            'route_name'        => $name,
-            'to'                => $to,
-            'from'              => $from,
-            'vice_versa'        => $viceVersa]);
+            'contributor_id'            => $contributorId,
+            'route_name'                => $name,
+            'to'                        => $to,
+            'from'                      => $from,
+            'vice_versa'                => $viceVersa,
+            'mode_of_transportation'    => $modeOfTransportation,
+            'average_fare'              => $averageFare,
+            'average_travel_time'       => $averageTravelTime]);
     }
 
     /**
@@ -55,14 +62,14 @@ class DbRouteRepository implements RouteRepositoryInterface
     /**
      * Searches a route based on some parameters
      *
-     * @param $query
+     * @param $keyword
      * @return mixed
      */
-    public function search($query)
+    public function search($keyword)
     {
         return Route::with(['coordinates'])
-            ->orWhere('route_name', 'LIKE', '%'.$query.'%')
-            ->orWhere('to', 'LIKE', '%'.$query.'%')
+            ->orWhere('route_name', 'LIKE', '%'.$keyword.'%')
+            ->orWhere('to', 'LIKE', '%'.$keyword.'%')
             ->get();
     }
 

@@ -28,12 +28,16 @@ Route::group(['prefix' => 'routes'], function() {
 | API Routes
 |--------------------------------------------------------------------------
 */
-Route::group(['prefix' => 'api/v1.0'], function() {
+Route::group(['prefix' => 'api/v1.0', 'middlware' => 'cors-filter'], function() {
+    // fix for CORS
+    header('Access-Control-Allow-Origin: *');
+
     Route::group(['prefix' => 'auth'], function() {
         Route::post('login', 'Api\ApiAuthController@login');
     });
 
     Route::group(['prefix' => 'routes'], function() {
+        Route::get('get_route', 'Api\ApiRoutesController@getRoute');
         Route::get('search', 'Api\ApiRoutesController@search');
 
         Route::post('create', 'Api\ApiRoutesController@create');

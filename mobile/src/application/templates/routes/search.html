@@ -1,0 +1,20 @@
+<style>
+    form { width: 100%; }
+</style>
+<ion-view view-title="Results for {{ keyword }}">
+    <ion-content>
+        <div class="list">
+            <div class="item item-input-inset">
+                <form ng-submit="doSearch()">
+                    <label class="item-input-wrapper">
+                        <input type="text" ng-model="search.keyword" placeholder="Search"
+                        value="{{ keyword}}">
+                    </label>
+                </form>
+            </div>
+            <a class="item" ng-repeat="result in results" href="#/route/view/{{result.id}}" nav-direction="forward">
+                {{result.route_name}}
+            </a>
+        </div>
+    </ion-content>
+</ion-view>

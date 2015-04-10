@@ -7,17 +7,21 @@ namespace Commuttr\Repositories\Route;
  */
 interface RouteRepositoryInterface
 {
+
     /**
-     * Creates a new route
+     * Create a new route
      *
      * @param $contributorId
      * @param $name
      * @param $to
      * @param $from
+     * @param $modeOfTransportation
+     * @param $averageFare
+     * @param $averageTravelTime
      * @param $viceVersa
      * @return mixed
      */
-    public function create($contributorId, $name, $to, $from, $viceVersa);
+    public function create($contributorId, $name, $to, $from, $modeOfTransportation, $averageFare, $averageTravelTime, $viceVersa);
 
     /**
      * Return all routes

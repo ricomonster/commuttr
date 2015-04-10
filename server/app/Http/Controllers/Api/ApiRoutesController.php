@@ -18,11 +18,15 @@ class ApiRoutesController extends ApiController
 
     public function create()
     {
-        $contributorId  = Input::get('contributor_id');
-        $routeName      = Input::get('route_name');
-        $to             = Input::get('to');
-        $from           = Input::get('from');
-        $coordinates    = Input::get('coordinates');
+        $contributorId      = Input::get('contributor_id');
+        $routeName          = Input::get('route_name');
+        $to                 = Input::get('to');
+        $from               = Input::get('from');
+        $coordinates        = Input::get('coordinates');
+        $averageFare        = Input::get('average_fare');
+        $averageTravelTime  = Input::get('average_travel_time');
+        $viceVersa          = Input::get('vice_versa');
+        $modeOfTransportation = Input::get('mode_of_transportation');
 
         // validate
         $messages = $this->routes->validateCreate($routeName, $to, $from);
@@ -35,7 +39,7 @@ class ApiRoutesController extends ApiController
         }
 
         // create route
-        $route = $this->routes->create($contributorId, $routeName, $to, $from, 0);
+        $route = $this->routes->create($contributorId, $routeName, $to, $from, $modeOfTransportation, $averageFare, $averageTravelTime, $viceVersa);
         // create coordinates
         $coordinates = $this->coordinates->create($route->id, $coordinates);
 
@@ -44,6 +48,33 @@ class ApiRoutesController extends ApiController
             'data' => [
                 'coordinates' => $coordinates->toArray(),
                 'routes' => $route->toArray()]]);
+    }
+
+    public function getRoute()
+    {
+        $id = Input::get('route_id');
+
+        // check if ID is empty or not integer
+        if (empty($id)) {
+            // return error message
+            return $this->setStatusCode(400)
+                ->respondWithError('Please provide the route ID');
+        }
+
+        // look for the route if it exists
+        $route = $this->routes->findById($id);
+
+        // check if route exists
+        if (empty($route)) {
+            // return error message
+            return $this->setStatusCode(400)
+                ->respondWithError('Route does not exists');
+        }
+
+        // return route
+        return $this->respond([
+            'data' => [
+                'route' => $route->toArray()]]);
     }
 
     public function search()

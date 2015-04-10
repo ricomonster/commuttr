@@ -18,6 +18,13 @@ class Coordinates extends Model {
     protected $fillable = ['route_id', 'latitude', 'longitude'];
 
     /**
+     * The attributes excluded from the model's JSON form.
+     *
+     * @var array
+     */
+    protected $hidden = ['id', 'route_id', 'created_at', 'updated_at'];
+
+    /**
      * Coordinates\Route Relationship
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo

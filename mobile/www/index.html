@@ -6,25 +6,22 @@
     <title></title>
     <link rel="stylesheet" href="/vendor/stylesheets/ionic.css"/>
 
+    <script src="http://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
+
     <script src="/vendor/javascript/angular.js"></script>
     <script src="/vendor/javascript/angular-animate.js"></script>
     <script src="/vendor/javascript/angular-sanitize.js"></script>
     <script src="/vendor/javascript/angular-ui-router.js"></script>
-    <script src="/vendor/javascript/ionic.js"></script>
-    <script src="/vendor/javascript/ionic-angular.js"></script>
+    <script src="/vendor/javascript/ionic.bundle.js"></script>
+    <!--<script src="/vendor/javascript/ionic-angular.js"></script>-->
 
     <script src="/javascript/app.js"></script>
+    <script src="/javascript/controllers.js"></script>
+    <script src="/javascript/services.js"></script>
     <!-- cordova script (this will be a 404 during development) -->
     <script src="cordova.js"></script>
 </head>
-<body ng-app="starter">
-
-    <ion-pane>
-        <ion-header-bar class="bar-stable">
-            <h1 class="title">Ionic Blank Starter</h1>
-        </ion-header-bar>
-        <ion-content>
-        </ion-content>
-    </ion-pane>
+<body ng-app="CommuttrApp">
+    <ion-nav-view></ion-nav-view>
 </body>
 </html>

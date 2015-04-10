@@ -21,6 +21,9 @@ class CreateRoutesTable extends Migration {
             $table->string('from');
             $table->tinyInteger('vice_versa')->unsigned()
                 ->default(0);
+            $table->string('mode_of_transportation');
+            $table->float('average_fare');
+            $table->string('average_travel_time');
 			$table->timestamps();
 		});
 	}

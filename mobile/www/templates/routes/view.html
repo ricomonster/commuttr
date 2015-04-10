@@ -1,0 +1,61 @@
+<style type="text/css">
+    #map_canvas {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0px;
+        left: 0;
+    }
+</style>
+<ion-view cache-view="false" drag-content="false">
+    <ion-nav-title>{{ route.route_name }}</ion-nav-title>
+    <ion-tabs class="tabs-icon-top tabs-secondary">
+        <ion-tab title="Map" icon="ion-android-map">
+            <ion-view>
+                <ion-content scroll="false">
+                    <div id="map_canvas" data-tap-disabled="true"></div>
+                </ion-content>
+            </ion-view>
+        </ion-tab>
+
+        <ion-tab title="Details" icon="ion-ios-list">
+            <ion-view>
+                <ion-content>
+                    <div class="list card">
+                        <div class="item item-text-wrap">
+                            <h2>Route name</h2>
+                            <p>{{ route.route_name }}</p>
+                        </div>
+                        <div class="item item-text-wrap">
+                            <h2>Route</h2>
+                            <p>
+                                From <strong>{{ route.from }}</strong> to
+                                <strong>{{ route.to}}</strong>
+                            </p>
+                        </div>
+                        <div class="item item-text-wrap">
+                            <h2>Mode of Transportation</h2>
+                            <p>{{ route.mode_of_transportation }}</p>
+                        </div>
+                        <div class="item item-text-wrap">
+                            <h2>Fare</h2>
+                            <p>Approx. <strong>Php {{ route.average_fare }}</strong></p>
+                        </div>
+                        <div class="item item-text-wrap">
+                            <h2>Travel Time</h2>
+                            <p>Approx. <strong>{{ route.average_travel_time }}</strong></p>
+                        </div>
+                    </div>
+                </ion-content>
+            </ion-view>
+        </ion-tab>
+
+        <ion-tab title="Reviews" icon="ion-chatbubble">
+            <ion-view>
+                <ion-content class="padding">
+                    <h3>Reviews</h3>
+                </ion-content>
+            </ion-view>
+        </ion-tab>
+    </ion-tabs>
+</ion-view>
