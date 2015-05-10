@@ -11,6 +11,27 @@
 |
 */
 
-$app->get('/', function() use ($app) {
-    return $app->welcome();
+Route::get('/', 'WelcomeController@index');
+Route::group(['prefix' => 'auth'], function() {
+    Route::get('login', 'AuthController@login');
+    Route::get('register', 'AuthController@register');
+});
+
+Route::group(['prefix' => 'routes'], function() {
+    Route::get('create', 'RoutesController@create');
+});
+
+/*
+|--------------------------------------------------------------------------
+| API Routes
+|--------------------------------------------------------------------------
+*/
+Route::group(['prefix' => 'api/v0.2'], function() {
+    Route::group(['prefix' => 'auth'], function() {
+        Route::post('login', 'Api\ApiAuthController@login');
+    });
+
+    Route::group(['prefix' => 'users'], function() {
+        Route::post('create', 'Api\ApiUsersController@create');
+    });
 });
