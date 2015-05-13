@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTransportationModesTable extends Migration {
+class CreateRouteTransportationTable extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -12,12 +12,11 @@ class CreateTransportationModesTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('transportation_modes', function(Blueprint $table)
+		Schema::create('route_transportation', function(Blueprint $table)
 		{
-			$table->increments('id');
             $table->integer('route_id')->unsigned();
-            $table->integer('vehicle_id')->unsigned();
-			$table->timestamps();
+            $table->integer('transportation_id')->unsigned();
+            $table->timestamps();
 		});
 	}
 
@@ -28,7 +27,7 @@ class CreateTransportationModesTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('transportation_modes');
+		Schema::drop('route_transportation');
 	}
 
 }

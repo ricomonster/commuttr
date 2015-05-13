@@ -18,7 +18,9 @@ Route::group(['prefix' => 'auth'], function() {
 });
 
 Route::group(['prefix' => 'routes'], function() {
-    Route::get('create', 'RoutesController@create');
+    Route::group(['middleware' => 'auth'], function() {
+        Route::get('create', 'RoutesController@create');
+    });
 });
 
 /*
@@ -29,6 +31,13 @@ Route::group(['prefix' => 'routes'], function() {
 Route::group(['prefix' => 'api/v0.2'], function() {
     Route::group(['prefix' => 'auth'], function() {
         Route::post('login', 'Api\ApiAuthController@login');
+    });
+
+    Route::group(['prefix' => 'routes'], function() {
+        Route::get('all', 'Api\ApiRoutesController@all');
+        Route::get('search', 'Api\ApiRoutesController@search');
+
+        Route::post('create', 'Api\ApiRoutesController@create');
     });
 
     Route::group(['prefix' => 'users'], function() {

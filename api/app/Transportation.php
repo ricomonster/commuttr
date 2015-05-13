@@ -2,35 +2,35 @@
 
 use Illuminate\Database\Eloquent\Model;
 
-class Coordinate extends Model {
+class Transportation extends Model {
     /**
      * The database table used by the model.
      *
      * @var string
      */
-    protected $table = 'coordinates';
+    protected $table = 'transportation';
 
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
-    protected $fillable = ['route_id', 'latitude', 'longitude'];
+    protected $fillable = ['transportation'];
 
     /**
      * The attributes excluded from the model's JSON form.
      *
      * @var array
      */
-    protected $hidden = ['id', 'route_id', 'created_at', 'updated_at'];
+    protected $hidden = array('created_at', 'updated_at', 'pivot');
 
     /**
-     * Coordinates\Route Relationship
+     * Route relationship
      *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
     public function route()
     {
-        return $this->belongsTo('Commuttr\Route', 'route_id');
+        return $this->belongsToMany('Commuttr\Route', 'route_transportation', 'transportation_id', 'route_id');
     }
 }

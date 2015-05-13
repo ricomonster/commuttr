@@ -1,11 +1,10 @@
 <?php namespace Commuttr\Http\Controllers\Api;
 
-use Commuttr\Http\Controllers\Controller;
 use Commuttr\Http\Requests;
 use Commuttr\Repositories\Users\UserRepositoryInterface;
 use Input, Request;
 
-class ApiAuthController extends Controller {
+class ApiAuthController extends ApiController {
     protected $users;
 
     public function __construct(UserRepositoryInterface $users)

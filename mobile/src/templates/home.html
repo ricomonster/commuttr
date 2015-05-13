@@ -1,0 +1,19 @@
+<ion-view>
+    <ion-content class="padding">
+        <h1 class="title center">Commuttr</h1>
+        <form ng-submit="searchRoute()">
+            <div class="list">
+                <label class="item item-input item-floating-label">
+                    <span class="input-label">Where are you going?</span>
+                    <input type="text" ng-model="search.query" placeholder="Where are you going?">
+                </label>
+
+                <div class="padding">
+                    <button class="button button-block button-positive" type="submit">
+                        Let's go!
+                    </button>
+                </div>
+            </div>
+        </form>
+    </ion-content>
+</ion-view>

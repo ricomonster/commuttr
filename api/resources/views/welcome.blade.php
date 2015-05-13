@@ -17,7 +17,7 @@
         }
 
         .container .wrapper {
-            height: 60%;
+            height: 70%;
             margin: 0 auto;
             padding: 0;
             display: table;

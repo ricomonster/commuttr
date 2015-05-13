@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateRouteTransportationMode extends Migration {
+class CreateCoordinatesTable extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -12,9 +12,12 @@ class CreateRouteTransportationMode extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('route_transportation', function(Blueprint $table)
+		Schema::create('coordinates', function(Blueprint $table)
 		{
 			$table->increments('id');
+            $table->integer('route_id')->unsigned();
+            $table->string('latitude');
+            $table->string('longitude');
 			$table->timestamps();
 		});
 	}
@@ -26,7 +29,7 @@ class CreateRouteTransportationMode extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('route_transportation');
+		Schema::drop('coordinates');
 	}
 
 }

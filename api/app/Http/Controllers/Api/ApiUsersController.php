@@ -2,11 +2,10 @@
 namespace Commuttr\Http\Controllers\Api;
 
 use Commuttr\Http\Requests;
-use Commuttr\Http\Controllers\Controller;
 use Commuttr\Repositories\Users\UserRepositoryInterface;
 use Input;
 
-class ApiUsersController extends Controller {
+class ApiUsersController extends ApiController {
     protected $users;
     public function __construct(UserRepositoryInterface $users)
     {

@@ -1,0 +1,1 @@
+CommuttrApp.controller("LoginController",["$scope",function(o){}]);

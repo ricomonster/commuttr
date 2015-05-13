@@ -1,0 +1,1 @@
+window.CommuttrApp=angular.module("CommuttrApp",["ionic"]).config(["$stateProvider","$urlRouterProvider",function(t,o){t.state("home",{url:"/",templateUrl:"application/templates/home.html"}).state("login",{url:"/login",templateUrl:"application/templates/auth/login.html",controller:"LoginController."}),o.otherwise("/")}]);

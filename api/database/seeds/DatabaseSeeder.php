@@ -1,6 +1,6 @@
 <?php
 
-use Commuttr\TransportationVehicle;
+use Commuttr\Transporation;
 use Illuminate\Database\Seeder;
 use Illuminate\Database\Eloquent\Model;
 
@@ -15,22 +15,22 @@ class DatabaseSeeder extends Seeder {
 	{
 		Model::unguard();
 
-		 $this->call('TransportationVehicleTableSeeder');
+		 $this->call('TransportationTableSeeder');
 	}
 
 }
 
-class TransportationVehicleTableSeeder extends Seeder {
+class TransportationTableSeeder extends Seeder {
     public function run()
     {
         // delete first contents of the table
-        DB::table('transportation_vehicles')->delete();
+        DB::table('transportation')->delete();
 
-        // set an array list of transportation vehicles
+        // set an array list of vehicles
         $vehicles = ['bus', 'jeepney', 'uv express', 'train', 'tricycle'];
 
         foreach ($vehicles as $key => $vehicle) {
-            TransportationVehicle::create(['vehicle' => $vehicle]);
+            Transporation::create(['transportation' => $vehicle]);
 
             $this->command->info(strtoupper($vehicle) . ' successfully added');
         }

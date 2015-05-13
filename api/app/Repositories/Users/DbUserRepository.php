@@ -4,8 +4,7 @@ namespace Commuttr\Repositories\Users;
 use Commuttr\User;
 use Auth, Hash, Validator;
 
-class DbUserRepository implements UserRepositoryInterface
-{
+class DbUserRepository implements UserRepositoryInterface {
     /**
      * Creates a new user
      *

@@ -31,6 +31,8 @@
             $('#register_form').on('submit', function(e) {
                 e.preventDefault();
 
+                var form = $(this);
+
                 messageHandler.hide().empty().removeClass('alert-danger');
 
                 $.ajax({
@@ -44,7 +46,7 @@
                             .text('You can now login.')
                             .slideDown();
 
-                        $(this).find('input[type="text"], input[type="password"]').val('');
+                        form[0].reset();
                     }
                 }).error(function(response) {
                     var errors = response.responseJSON.errors,
