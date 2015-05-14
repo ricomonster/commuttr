@@ -28,7 +28,10 @@ Route::group(['prefix' => 'routes'], function() {
 | API Routes
 |--------------------------------------------------------------------------
 */
-Route::group(['prefix' => 'api/v0.2'], function() {
+Route::group(['prefix' => 'api/v0.2', 'middleware' => 'corsFilter'], function() {
+    // fix for CORS
+    header('Access-Control-Allow-Origin: *');
+
     Route::group(['prefix' => 'auth'], function() {
         Route::post('login', 'Api\ApiAuthController@login');
     });

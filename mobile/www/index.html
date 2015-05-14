@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
     <title></title>
-    <link href='https://fonts.googleapis.com/css?family=RobotoDraft:400,500,700,400italic' rel='stylesheet' type='text/css'>
+    <!--<link href='https://fonts.googleapis.com/css?family=RobotoDraft:400,500,700,400italic' rel='stylesheet' type='text/css'>-->
     <link rel="stylesheet" href="vendor/css/ionic.css"/>
     <link rel="stylesheet" href="vendor/css/ionic.material.min.css"/>
 
@@ -17,8 +17,11 @@
     <script src="vendor/js/ionic.material.min.js"></script>
 
     <script src="application/js/app.js"></script>
+    <script src="application/js/controllers.js"></script>
+    <script src="application/js/services.js"></script>
 </head>
 <body>
     <ion-nav-view></ion-nav-view>
+    <div ng-include="'application/templates/shared/footer.html'"></div>
 </body>
 </html>

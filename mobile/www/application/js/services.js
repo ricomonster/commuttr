@@ -1,0 +1,1 @@
+CommuttrApp.factory("RouteService",["$http",function(t){return{search:function(r){return t.get("http://localhost:8000/api/v0.2/routes/search?keyword="+r.keyword)}}}]);

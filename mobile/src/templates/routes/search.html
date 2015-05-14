@@ -1,0 +1,16 @@
+<ion-view id="product_list_page" title="Route results for keyword">
+    <ion-header-bar class="bar bar-header bar-positive item-input-inset">
+        <button class="button button-icon ion-navicon" menu-toggle="left"></button>
+    </ion-header-bar>
+    <ion-content class="has-header has-footer">
+        <div class="list">
+            <a class="item item-text-wrap ink" href="#" ng-repeat="route in searchResults">
+                <h2>{{ route.name }}</h2>
+                <p>
+                    From <strong>{{ route.from }}</strong>
+                    to <strong>{{ route.to }}</strong>
+                </p>
+            </a>
+        </div>
+    </ion-content>
+</ion-view>
