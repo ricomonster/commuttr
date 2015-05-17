@@ -19,6 +19,30 @@ class ApiRoutesController extends ApiController {
                 'routes' => $this->routes->all()]]);
     }
 
+    public function getRoute()
+    {
+        $id = Input::get('route_id');
+
+        // check first if id is set
+        if (!$id || empty($id)) {
+            return $this->setStatusCode(400)
+                ->respondWithError('Route ID is not set.');
+        }
+
+        // get the route
+        $route = $this->routes->findById($id);
+
+        // check if route is found
+        if (empty($route)) {
+            return $this->setStatusCode(404)
+                ->respondWithError('Route not found.');
+        }
+
+        // return the route
+        return $this->respond(['data' => [
+            'route' => $route->toArray()]]);
+    }
+
     public function create()
     {
         // get the parameters

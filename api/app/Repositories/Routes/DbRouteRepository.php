@@ -65,7 +65,7 @@ class DbRouteRepository implements RouteRepositoryInterface {
      */
     public function findById($id)
     {
-
+        return Route::find($id);
     }
 
     /**

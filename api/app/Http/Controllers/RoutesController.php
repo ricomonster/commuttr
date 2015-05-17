@@ -2,6 +2,7 @@
 
 use Commuttr\Http\Requests;
 use Commuttr\Transportation;
+use Input;
 
 class RoutesController extends Controller {
     public function create()
@@ -14,6 +15,9 @@ class RoutesController extends Controller {
 
     public function search()
     {
-        return view('routes.search');
+        $query = Input::get('query');
+
+        return view('routes.search', [
+            'query' => $query]);
     }
 }

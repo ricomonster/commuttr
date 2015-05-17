@@ -1,6 +1,5 @@
 <?php
 
-use Commuttr\Transporation;
 use Illuminate\Database\Seeder;
 use Illuminate\Database\Eloquent\Model;
 
@@ -30,7 +29,7 @@ class TransportationTableSeeder extends Seeder {
         $vehicles = ['bus', 'jeepney', 'uv express', 'train', 'tricycle'];
 
         foreach ($vehicles as $key => $vehicle) {
-            Transporation::create(['transportation' => $vehicle]);
+            \Commuttr\Transportation::create(['transportation' => $vehicle]);
 
             $this->command->info(strtoupper($vehicle) . ' successfully added');
         }

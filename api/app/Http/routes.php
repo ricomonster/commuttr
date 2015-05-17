@@ -18,6 +18,8 @@ Route::group(['prefix' => 'auth'], function() {
 });
 
 Route::group(['prefix' => 'routes'], function() {
+    Route::get('search', 'RoutesController@search');
+
     Route::group(['middleware' => 'auth'], function() {
         Route::get('create', 'RoutesController@create');
     });
@@ -38,6 +40,7 @@ Route::group(['prefix' => 'api/v0.2', 'middleware' => 'corsFilter'], function() 
 
     Route::group(['prefix' => 'routes'], function() {
         Route::get('all', 'Api\ApiRoutesController@all');
+        Route::get('get_route', 'Api\ApiRoutesController@getRoute');
         Route::get('search', 'Api\ApiRoutesController@search');
 
         Route::post('create', 'Api\ApiRoutesController@create');

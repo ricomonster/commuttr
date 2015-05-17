@@ -73,7 +73,7 @@
                 <h1 class="hero-title">Commuttr</h1>
                 <p class="hero-description">Travel with no worries.</p>
 
-                <form id="search_route_form" method="GET" action="{{ url('/route/search') }}">
+                <form id="search_route_form" method="GET" action="{{ url('/routes/search') }}">
                     <input type="text" name="query" class="form-control input-lg"
                     placeholder="Where are you going?"/>
                 </form>
