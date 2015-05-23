@@ -1,4 +1,4 @@
-CommuttrApp.factory('Storage', ['localStorageService', function(localStorageService) {
+CommuttrApp.factory('StorageService', ['localStorageService', function(localStorageService) {
     return {
         set : function(key, value) {
             return localStorageService.set(key, value);

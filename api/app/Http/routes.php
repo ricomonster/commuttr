@@ -19,6 +19,7 @@ Route::group(['prefix' => 'auth'], function() {
 
 Route::group(['prefix' => 'routes'], function() {
     Route::get('search', 'RoutesController@search');
+    Route::get('detail/{id}', 'RoutesController@details');
 
     Route::group(['middleware' => 'auth'], function() {
         Route::get('create', 'RoutesController@create');
@@ -36,6 +37,10 @@ Route::group(['prefix' => 'api/v0.2', 'middleware' => 'corsFilter'], function() 
 
     Route::group(['prefix' => 'auth'], function() {
         Route::post('login', 'Api\ApiAuthController@login');
+    });
+
+    Route::group(['prefix' => 'coordinates'], function() {
+        Route::get('get', 'Api\ApiCoordinatesController@getCoordinates');
     });
 
     Route::group(['prefix' => 'routes'], function() {

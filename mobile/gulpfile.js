@@ -43,6 +43,8 @@ gulp.task('build-bower-assets', function() {
         paths.bower + '/angular-animate/angular-animate.js',
         paths.bower + '/angular-animate/angular-animate.min.js',
         paths.bower + '/angular-animate/angular-animate.min.js.map',
+        // angular local storage
+        paths.bower + '/angular-local-storage/dist/*',
         // angular sanitize
         paths.bower + '/angular-sanitize/angular-sanitize.js',
         paths.bower + '/angular-sanitize/angular-sanitize.min.js',

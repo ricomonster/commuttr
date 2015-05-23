@@ -1,10 +1,18 @@
 <?php namespace Commuttr\Http\Controllers;
 
 use Commuttr\Http\Requests;
+use Commuttr\Repositories\Routes\RouteRepositoryInterface;
 use Commuttr\Transportation;
 use Input;
 
 class RoutesController extends Controller {
+    protected $routes;
+
+    public function __construct(RouteRepositoryInterface $routes)
+    {
+        $this->routes = $routes;
+    }
+
     public function create()
     {
         return view('routes.create', [
@@ -13,11 +21,18 @@ class RoutesController extends Controller {
         ]);
     }
 
+    public function detail($id)
+    {
+        // get route
+        $route = $this->routes->findById($id);
+    }
+
     public function search()
     {
         $query = Input::get('query');
 
         return view('routes.search', [
-            'query' => $query]);
+            'query' => $query,
+            'routes' => $this->routes->search($query)]);
     }
 }

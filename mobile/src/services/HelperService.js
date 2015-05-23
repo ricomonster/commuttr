@@ -1,4 +1,4 @@
-CommuttrApp.factory('Helper', ['$ionicLoading', '$ionicPopup', function($ionicLoading, $ionicPopup) {
+CommuttrApp.factory('HelperService', ['$ionicLoading', '$ionicPopup', function($ionicLoading, $ionicPopup) {
     return {
         loader : function(show) {
             if (show) {

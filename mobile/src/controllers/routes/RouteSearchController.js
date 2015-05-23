@@ -1,8 +1,8 @@
-CommuttrApp.controller('RouteSearchController', ['$ionicLoading', '$scope', '$stateParams', '$timeout', 'RouteService', function($ionicLoading, $scope, $stateParams, $timeout, RouteService) {
+CommuttrApp.controller('RouteSearchController', ['$scope', '$stateParams', '$timeout', 'HelperService' , 'RouteService', function($scope, $stateParams, $timeout, HelperService, RouteService) {
     $scope.searchResults = {};
 
     // show loader
-    $ionicLoading.show();
+    HelperService.loader(true);
 
     // initialize search once page loads
     var initialize = function() {
@@ -16,12 +16,15 @@ CommuttrApp.controller('RouteSearchController', ['$ionicLoading', '$scope', '$st
                 $scope.searchResults = response.data.results;
 
                 // hide loader
-                $ionicLoading.hide();
+                HelperService.loader();
             }
         });
     };
 
     initialize();
 
-    ionic.material.ink.displayEffect();
+    // ink effect fix
+    $scope.$on('ngLastRepeat.list', function(e) {
+        ionic.material.ink.displayEffect();
+    });
 }]);
