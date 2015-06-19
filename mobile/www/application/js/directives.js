@@ -1,1 +1,0 @@
-CommuttrApp.directive("ngLastRepeat",["$timeout",function(t){return{restrict:"A",link:function(e,n,a){1==e.$last&&t(function(){e.$emit("ngLastRepeat"+(a.ngLastRepeat?"."+a.ngLastRepeat:""))})}}}]);

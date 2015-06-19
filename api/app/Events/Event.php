@@ -1,7 +1,8 @@
-<?php namespace Commuttr\Events;
+<?php
 
-abstract class Event {
+namespace Commuttr\Events;
 
-	//
-
+abstract class Event
+{
+    //
 }
