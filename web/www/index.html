@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:300,400,500,700,400italic">
+    <link rel="stylesheet" href="./vendor/stylesheets/angular-material.css"/>
+    <style type="text/css">
+        /*.ng-scope { height: 100%; }*/
+        md-toast { position: fixed; }
+    </style>
+</head>
+<body ng-app="commuttrApp" layout="column">
+    <div ng-include="'./app/components/header/header.html'"></div>
+    <md-content flex md-scroll-y>
+        <div ui-view></div>
+    </md-content>
+
+    <script src="./vendor/javascript/angular.js"></script>
+    <script src="./vendor/javascript/angular-animate.js"></script>
+    <script src="./vendor/javascript/angular-aria.js"></script>
+    <script src="./vendor/javascript/angular-material.js"></script>
+    <script src="./vendor/javascript/angular-ui-router.js"></script>
+
+    <script src="./app/app.js"></script>
+    <script src="./app/components/auth/auth.js"></script>
+    <script src="./app/components/header/header.js"></script>
+    <script src="./app/components/landing/landing.js"></script>
+    <script src="./app/components/routes/routes.js"></script>
+
+    <script src="./app/services/toast/toast.js"></script>
+</body>
+</html>

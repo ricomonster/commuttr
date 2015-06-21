@@ -1,0 +1,42 @@
+<style type="text/css">
+    .error-handler {
+        color: rgb(255,255,255);
+        background-color: rgb(244,67,54);
+        border-radius: 3px;
+        box-sizing: border-box;
+        padding: 10px 15px;
+        margin: 6px 8px;
+    }
+
+    .error-handler p { display: inline-table; margin: 5px 0; width: 100%; }
+
+    .auth-register-page form button { margin: 0; width: 100%; }
+</style>
+<div class="auth-register-page" ng-controller="AuthRegisterController as arc">
+    <form ng-submit="arc.submitRegistration()">
+        <md-input-container>
+            <label>Email</label>
+            <input type="text" ng-model="arc.register.email">
+        </md-input-container>
+        <md-input-container>
+            <label>Password</label>
+            <input type="password" ng-model="arc.register.password">
+            <span class="error password-error"></span>
+        </md-input-container>
+        <md-input-container>
+            <label>Name</label>
+            <input type="text" ng-model="arc.register.name">
+            <span class="error"></span>
+        </md-input-container>
+        <p>Are you a...</p>
+        <md-radio-group ng-model="arc.register.type" class="md-primary">
+            <md-radio-button ng-repeat="type in arc.userTypes" ng-value="type.value">
+                {{ type.type }}
+            </md-radio-button>
+        </md-radio-group>
+        <div class="error-handler" ng-if="arc.showErrors">
+            <p ng-repeat="error in arc.errors">{{ error[0] }}</p>
+        </div>
+        <md-button class="md-raised md-primary">Signup</md-button>
+    </form>
+</div>

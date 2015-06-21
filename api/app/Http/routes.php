@@ -14,3 +14,17 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::group(['prefix' => 'api/v2.0', 'middleware' => 'corsFilter'], function() {
+    Route::group(['prefix' => 'routes'], function() {
+        Route::get('search', 'ApiRoutesController@searchRoutes');
+
+        Route::post('create', 'ApiRoutesController@create');
+    });
+
+    Route::group(['prefix' => 'users'], function() {
+        Route::get('get_user', 'ApiUsersController@getUser');
+
+        Route::post('create', 'ApiUsersController@create');
+    });
+});

@@ -1,0 +1,14 @@
+<div class="routes-search-page" ng-controller="RoutesSearchController as rsc">
+    <div layout="row" layout-wrap>
+        <div flex="30">
+            <md-list class="md-3-line">
+                <md-list-item ng-repeat="result in rsc.searchResults">
+                    {{ result.route_name }}
+                </md-list-item>
+            </md-list>
+        </div>
+        <div flex="70">
+            [flex="60"]
+        </div>
+    </div>
+</div>

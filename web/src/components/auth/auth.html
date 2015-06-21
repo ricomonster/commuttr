@@ -1,0 +1,19 @@
+<style type="text/css">
+    .auth-page { width: 30%; margin: auto; }
+    .auth-page h1 { margin: 20px 0 10px; text-align: center; }
+</style>
+<div class="auth-page">
+    <h1 class="md-display-2">Commuttr</h1>
+    <md-tabs md-dynamic-height md-border-bottom md-stretch-tabs="always">
+        <md-tab label="Login">
+            <md-content class="md-padding">
+                <div ng-include="'app/components/auth/login.html'"></div>
+            </md-content>
+        </md-tab>
+        <md-tab label="Register">
+            <md-content class="md-padding">
+                <div ng-include="'app/components/auth/register.html'"></div>
+            </md-content>
+        </md-tab>
+    </md-tabs>
+</div>

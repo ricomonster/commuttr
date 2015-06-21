@@ -29,5 +29,6 @@ class Kernel extends HttpKernel
         'auth' => \Commuttr\Http\Middleware\Authenticate::class,
         'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
         'guest' => \Commuttr\Http\Middleware\RedirectIfAuthenticated::class,
+        'corsFilter' => \Commuttr\Http\Middleware\CorsFilter::class
     ];
 }

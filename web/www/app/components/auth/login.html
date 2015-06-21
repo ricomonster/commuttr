@@ -1,0 +1,16 @@
+<style type="text/css">
+    .auth-login-page form button { margin: 0; width: 100%; }
+</style>
+<div class="auth-login-page" ng-controller="AuthLoginController as alc">
+    <form ng-submit="alc.submitLogin()">
+        <md-input-container>
+            <label>Email</label>
+            <input type="text" ng-model="alc.login.email" placeholder="Email">
+        </md-input-container>
+        <md-input-container>
+            <label>Password</label>
+            <input type="password" ng-model="alc.login.password" placeholder="Password">
+        </md-input-container>
+        <md-button class="md-raised md-primary">Login</md-button>
+    </form>
+</div>
