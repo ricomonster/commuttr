@@ -32,7 +32,6 @@
                 .success(function(response) {
                     if (response.result) {
                         ToastService.show('You have successfully registered. You can now logged in.');
-                        // log in the user
                     }
                 })
                 .error(function(response) {

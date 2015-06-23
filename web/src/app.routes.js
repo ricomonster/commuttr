@@ -41,10 +41,15 @@
                 }
             })
             .state('routes.details', {
-                url : '/navigate/:id',
+                url : '/navigate/:id'
             })
             .state('routes.create', {
                 url : '/create',
+                views : {
+                    'routes_content' : {
+                        templateUrl : 'app/components/routes/create.html'
+                    }
+                }
             })
     }
 })();

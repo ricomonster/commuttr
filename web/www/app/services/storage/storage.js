@@ -1,0 +1,1 @@
+!function(){"use strict";function e(e){return{set:function(r,t){e.set(r,JSON.stringify(t))},get:function(r){var t=e.get(r);return JSON.parse(t)},remove:function(r){return e.remove(r)}}}angular.module("commuttrApp.storageServices").factory("StorageService",["localStorageService",e])}();

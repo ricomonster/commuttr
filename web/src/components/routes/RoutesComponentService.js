@@ -9,6 +9,9 @@
             search : function(keyword) {
                 return $http.get('http://localhost:8000/api/v2.0/routes/search?keyword=' +
                     (keyword || ' '));
+            },
+            vehicles : function() {
+                return $http.get('http://localhost:8000/api/v2.0/transportation/vehicle_lists');
             }
         }
     }

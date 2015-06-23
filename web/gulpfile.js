@@ -37,6 +37,12 @@ var getFolders = function(directory) {
 
 // build the bower assets and put in the www/assets folder
 gulp.task('build-bower-assets', function() {
+    // fonts
+    gulp.src([
+        // font-awesome
+        paths.bower + '/font-awesome/fonts/*'
+    ]).pipe(gulp.dest(paths.www + '/vendor/fonts'));
+
     // javascript
     gulp.src([
         // angular js
@@ -50,6 +56,8 @@ gulp.task('build-bower-assets', function() {
         paths.bower + '/angular-aria/angular-aria.js',
         paths.bower + '/angular-aria/angular-aria.min.js',
         paths.bower + '/angular-aria/angular-aria.min.js.map',
+        // angular local storage
+        paths.bower + '/angular-local-storage/dist/*',
         // angular material
         paths.bower + '/angular-material/angular-material.js',
         paths.bower + '/angular-material/angular-material.min.js',
@@ -61,7 +69,9 @@ gulp.task('build-bower-assets', function() {
     gulp.src([
         // angular material
         paths.bower + '/angular-material/angular-material.css',
-        paths.bower + '/angular-material/angular-material.min.css'
+        paths.bower + '/angular-material/angular-material.min.css',
+        // font awesome
+        paths.bower + '/font-awesome/css/*'
     ]).pipe(gulp.dest(paths.www + '/vendor/stylesheets'));
 });
 

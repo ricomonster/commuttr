@@ -1,14 +1,31 @@
+<style>
+    #map_canvas {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+    }
+</style>
 <div class="routes-search-page" ng-controller="RoutesSearchController as rsc">
-    <div layout="row" layout-wrap>
-        <div flex="30">
+    <div layout="row" flex layout-wrap layout-fill>
+        <div layout="column" flex="30">
             <md-list class="md-3-line">
                 <md-list-item ng-repeat="result in rsc.searchResults">
-                    {{ result.route_name }}
+                    <div class="md-list-item-text">
+                        <h3>{{ result.route_name }}</h3>
+                        <p>
+                            From <strong>{{ result.origin }}</strong>
+                            to <strong>{{ result.destination }}</strong>
+                        </p>
+                    </div>
                 </md-list-item>
             </md-list>
         </div>
-        <div flex="70">
-            [flex="60"]
+        <div layout="column" flex="70">
+            <md-content flex>
+                <div id="map_canvas"></div>
+            </md-content>
         </div>
     </div>
 </div>

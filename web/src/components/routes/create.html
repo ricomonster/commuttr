@@ -1,0 +1,46 @@
+<style>
+    #map_canvas {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+    }
+</style>
+<div class="routes-create-page" ng-controller="RoutesCreateController as rcc">
+    <div layout="row" flex layout-wrap layout-fill>
+        <div layout="column" flex="70">
+            <md-content flex>
+                <div id="map_canvas"></div>
+            </md-content>
+        </div>
+        <div layout="column" flex="30" layout-padding>
+            <h5 class="md-headline" style="margin: 10px 0;">Create a route</h5>
+            <form ng-submit="rcc.createRoute()">
+                <md-input-container>
+                    <label>Route name</label>
+                    <input type="text">
+                </md-input-container>
+                <md-input-container>
+                    <label>Destination</label>
+                    <input type="text">
+                </md-input-container>
+                <md-input-container>
+                    <label>Origin</label>
+                    <input type="text">
+                </md-input-container>
+                <div layout="row" layout-wrap>
+                    <div ng-repeat="vehicle in rcc.vehicleLists" class="standard" flex="50">
+                        <label>
+                            <md-checkbox>
+                                {{ vehicle.vehicle_type }}
+                            </md-checkbox>
+                        </label>
+                    </div>
+                </div>
+
+                <md-button class="md-raised md-primary">Create Route</md-button>
+            </form>
+        </div>
+    </div>
+</div>

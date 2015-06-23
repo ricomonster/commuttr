@@ -1,0 +1,1 @@
+!function(){"use strict";function e(e){return{user:function(){return e.get("user")},logout:function(){e.remove("user")}}}angular.module("commuttrApp.authServices").factory("AuthService",["StorageService",e])}();

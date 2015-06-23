@@ -1,0 +1,49 @@
+<style type="text/css">
+    .sidebar-page md-toolbar { padding: 15px 10px; }
+    .sidebar-page md-toolbar h4 { margin-bottom: 5px; }
+    .sidebar-page md-toolbar h6 { margin-top: 0; }
+
+    .sidebar-page md-list md-list-item .md-button {
+        border-radius: 0;
+        margin: 0;
+        min-height: 48px;
+        text-align: left;
+        width: 100%;
+    }
+
+    .sidebar-page md-list md-list-item .md-button span { line-height: 48px; }
+</style>
+<div class="sidebar-page" ng-controller="SidebarController as sc">
+    <md-sidenav class="site-sidenav md-sidenav-right md-whiteframe-z2"
+    md-component-id="right" style="height: 100%;">
+        <md-toolbar class="md-whiteframe-z1">
+            <h4><span>Rico Maglayon</span></h4>
+            <h6><span>rmaglayon@gmail.com</span></h6>
+        </md-toolbar>
+
+        <md-list>
+            <md-list-item>
+                <md-button ui-sref="routes.create">
+                    Create Route
+                </md-button>
+            </md-list-item>
+            <md-list-item>
+                <md-button ui-sref="routes.my">
+                    My Routes
+                </md-button>
+            </md-list-item>
+            <md-divider></md-divider>
+            <md-list-item>
+                <md-button ui-sref="accounts.details">
+                    Account
+                </md-button>
+            </md-list-item>
+            <md-list-item>
+                <md-button ng-click="sc.logout()">
+                    Log out
+                </md-button>
+            </md-list-item>
+            <md-divider></md-divider>
+        </md-list>
+    </md-sidenav>
+</div>

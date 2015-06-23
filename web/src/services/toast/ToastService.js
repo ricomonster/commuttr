@@ -6,7 +6,7 @@
 
     function ToastService($mdToast) {
         return {
-            show : function(message) {
+            show : function(message, timeout) {
                 // hide toast
                 this.hide();
 

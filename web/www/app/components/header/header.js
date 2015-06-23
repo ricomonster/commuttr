@@ -1,1 +1,1 @@
-!function(){"use strict";function o(){}angular.module("commuttrApp.headerComponents").controller("HeaderController",[o])}();
+!function(){"use strict";function o(o,e){var r=this;r.user=e.user(),r.loggedIn=r.user,r.showSidebar=function(){o.$broadcast("show-sidebar")},o.$on("logged-in",function(){r.user=e.user(),r.loggedIn=r.user}),o.$on("logged-out",function(){console.log("asdf"),r.user=e.user(),r.loggedIn=r.user})}angular.module("commuttrApp.headerComponents").controller("HeaderController",["$rootScope","AuthService",o])}();

@@ -16,10 +16,18 @@ Route::get('/', function () {
 });
 
 Route::group(['prefix' => 'api/v2.0', 'middleware' => 'corsFilter'], function() {
+    Route::group(['prefix' => 'auth'], function() {
+        Route::post('login', 'ApiAuthController@login');
+    });
+
     Route::group(['prefix' => 'routes'], function() {
         Route::get('search', 'ApiRoutesController@searchRoutes');
 
         Route::post('create', 'ApiRoutesController@create');
+    });
+
+    Route::group(['prefix' => 'transportation'], function() {
+        Route::get('vehicle_lists', 'ApiTransportationController@vehicleList');
     });
 
     Route::group(['prefix' => 'users'], function() {

@@ -1,0 +1,1 @@
+!function(){"use strict";function o(o,t,r){var e=this;e.logout=function(){r.logout(),o("right").toggle(),t.$broadcast("logged-out")},t.$on("show-sidebar",function(){o("right").toggle()})}angular.module("commuttrApp.sidebarComponents").controller("SidebarController",["$mdSidenav","$rootScope","AuthService",o])}();
