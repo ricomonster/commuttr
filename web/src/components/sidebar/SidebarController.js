@@ -20,6 +20,11 @@
             $rootScope.$broadcast('logged-out');
         };
 
+        self.closeSidebar = function() {
+            // toggle sidebar
+            $mdSidenav('right').toggle();
+        };
+
         // listen for sidebar to be toggled
         $rootScope.$on('show-sidebar', function() {
             $mdSidenav('right').toggle();

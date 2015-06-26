@@ -11,8 +11,8 @@
 
     function themeConfiguration($mdThemingProvider) {
         $mdThemingProvider.theme('default')
-            .primaryPalette('green')
-            .accentPalette('red');
+            .primaryPalette('light-green')
+            .accentPalette('blue');
     }
 
     function localStorageConfiguration(localStorageServiceProvider) {

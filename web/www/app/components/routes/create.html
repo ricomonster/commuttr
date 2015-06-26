@@ -1,4 +1,16 @@
 <style>
+    .routes-create-page .map-wrapper,
+    .routes-create-page .form-wrapper { position: relative; }
+
+    .routes-create-page .form-wrapper .form-wrapper-content {
+        overflow: auto;
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+    }
+
     #map_canvas {
         position: absolute;
         top: 0;
@@ -9,38 +21,67 @@
 </style>
 <div class="routes-create-page" ng-controller="RoutesCreateController as rcc">
     <div layout="row" flex layout-wrap layout-fill>
-        <div layout="column" flex="70">
-            <md-content flex>
-                <div id="map_canvas"></div>
-            </md-content>
+        <div layout="column" flex="70" class="map-wrapper">
+            <div id="map_canvas"></div>
         </div>
-        <div layout="column" flex="30" layout-padding>
-            <h5 class="md-headline" style="margin: 10px 0;">Create a route</h5>
-            <form ng-submit="rcc.createRoute()">
-                <md-input-container>
-                    <label>Route name</label>
-                    <input type="text">
-                </md-input-container>
-                <md-input-container>
-                    <label>Destination</label>
-                    <input type="text">
-                </md-input-container>
-                <md-input-container>
-                    <label>Origin</label>
-                    <input type="text">
-                </md-input-container>
-                <div layout="row" layout-wrap>
-                    <div ng-repeat="vehicle in rcc.vehicleLists" class="standard" flex="50">
+        <div layout="column" flex="30" class="form-wrapper">
+            <div class="form-wrapper-content" layout-padding>
+                <h5 class="md-headline" style="margin: 10px 0;">Create a route</h5>
+                <form ng-submit="rcc.submitRoute()">
+                    <md-input-container>
+                        <label>Route name</label>
+                        <input type="text" ng-model="rcc.route.route_name">
+                    </md-input-container>
+
+                    <md-input-container>
+                        <label>Destination</label>
+                        <input type="text" ng-model="rcc.route.destination">
+                    </md-input-container>
+
+                    <md-input-container>
+                        <label>Origin</label>
+                        <input type="text" ng-model="rcc.route.origin">
+                    </md-input-container>
+
+                    <div layout="row" layout-wrap>
+                        <div ng-repeat="vehicle in rcc.vehicleLists" class="standard" flex="50">
+                            <label>
+                                <md-checkbox ng-checked="rcc.exists(vehicle, rcc.route.vehicles)"
+                                ng-click="rcc.select(vehicle, rcc.route.vehicles)">
+                                    {{ vehicle.vehicle_type | uppercase }}
+                                </md-checkbox>
+                            </label>
+                        </div>
+                    </div>
+
+                    <md-input-container ng-repeat="(key, viaRoute) in rcc.route.via_route">
+                        <label>Via Route</label>
+                        <input type="text" ng-model="rcc.route.via_route[key].location"/>
+                    </md-input-container>
+                    <div layout="row">
+                        <span flex></span>
+                        <md-button class="md-primary" ng-click="rcc.addViaRoute($event)">
+                            <md-icon class="fa fa-plus"></md-icon>
+                            Add a Via Route
+                        </md-button>
+                    </div>
+
+                    <md-input-container>
+                        <label>Tell us something about this route. (Optional)</label>
+                        <textarea ng-model="rcc.route.details" columns="1"></textarea>
+                    </md-input-container>
+
+                    <div class="standard">
                         <label>
-                            <md-checkbox>
-                                {{ vehicle.vehicle_type }}
-                            </md-checkbox>
+                            <md-checkbox>Via Versa</md-checkbox>
                         </label>
                     </div>
-                </div>
 
-                <md-button class="md-raised md-primary">Create Route</md-button>
-            </form>
+                    <div class="submit-button-wrapper">
+                        <md-button class="md-raised md-primary">Create Route</md-button>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
 </div>
