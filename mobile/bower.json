@@ -1,0 +1,9 @@
+{
+  "name": "HelloIonic",
+  "private": "true",
+  "devDependencies": {
+    "angular-local-storage": "~0.2.2",
+    "ionic": "~1.0.0",
+    "ionic-material": "~0.4.2"
+  }
+}
