@@ -11,6 +11,16 @@
         right: 0;
     }
 
+    .routes-create-page .form-wrapper .form-wrapper-content form .error-handler {
+        background-color: transparent;
+        border-radius: 0;
+        color: rgb(244,67,54);
+        display: block;
+        margin: 0;
+        order: 3;
+        padding: 15px 0 5px;
+    }
+
     #map_canvas {
         position: absolute;
         top: 0;
@@ -31,16 +41,25 @@
                     <md-input-container>
                         <label>Route name</label>
                         <input type="text" ng-model="rcc.route.route_name">
-                    </md-input-container>
-
-                    <md-input-container>
-                        <label>Destination</label>
-                        <input type="text" ng-model="rcc.route.destination">
+                        <span class="error-handler" ng-if="rcc.formErrors.route_name">
+                            {{ rcc.formErrors.route_name[0] }}
+                        </span>
                     </md-input-container>
 
                     <md-input-container>
                         <label>Origin</label>
                         <input type="text" ng-model="rcc.route.origin">
+                        <span class="error-handler" ng-if="rcc.formErrors.origin">
+                            {{ rcc.formErrors.origin[0] }}
+                        </span>
+                    </md-input-container>
+
+                    <md-input-container>
+                        <label>Destination</label>
+                        <input type="text" ng-model="rcc.route.destination">
+                        <span class="error-handler" ng-if="rcc.formErrors.destination">
+                            {{ rcc.formErrors.destination[0] }}
+                        </span>
                     </md-input-container>
 
                     <div layout="row" layout-wrap>
@@ -52,6 +71,9 @@
                                 </md-checkbox>
                             </label>
                         </div>
+                        <span class="error-handler" ng-if="rcc.formErrors.vehicles">
+                            {{ rcc.formErrors.vehicles[0] }}
+                        </span>
                     </div>
 
                     <md-input-container ng-repeat="(key, viaRoute) in rcc.route.via_route">

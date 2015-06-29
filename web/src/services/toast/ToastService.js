@@ -14,7 +14,7 @@
                     $mdToast.simple()
                         .content(message)
                         .position('bottom left')
-                        .hideDelay(0));
+                        .hideDelay(timeout || 0));
             },
             hide : function() {
                 $mdToast.hide();

@@ -1,1 +1,0 @@
-!function(){"use strict";function o(){}angular.module("commutrMobile.component.sidebar").controller("SidebarController",[o])}();

@@ -18,6 +18,8 @@
             location : ''
         }];
 
+        self.formErrors = [];
+
         // map variables
         self.directionsService = '';
         self.directionsRenderer = '';
@@ -69,6 +71,9 @@
             // build up the coordinates
             self.fetchCoordinates();
 
+            // clear errors
+            self.formErrors = [];
+
             var route = self.route;
 
             // send request to the API
@@ -78,12 +83,33 @@
                     route.via_route, route.vehicles, route.coordinates)
                 .success(function(response) {
                     if (response.route) {
-                        // clear the map
-                        // clear the form
+                        // clear the map and form
+                        self.clearForm();
+
                         // show toaster
-                        ToastService.show('You have successfully created the route.');
+                        ToastService.show('You have successfully created the route.', 5000);
                     }
+                })
+                .error(function(response) {
+                    // show errors in the form
+                    ToastService.show('There are errors encountered.', 5000);
+
+                    self.formErrors = response.errors.message;
                 });
+        };
+
+        self.clearForm = function() {
+            self.route = [];
+            self.route.coordinates = [];
+            self.route.vehicles = [];
+
+            // clear via routes
+            self.route.via_route = [{
+                location : ''
+            }];
+
+            // reinitialize google maps
+            self.initializeGoogleMaps();
         };
 
         /**
@@ -96,6 +122,7 @@
             // declare services
             self.directionsService = new google.maps.DirectionsService();
             self.directionsRenderer = new google.maps.DirectionsRenderer();
+
             // set the map
             self.map = new google.maps.Map(document.getElementById('map_canvas'), {
                 zoom                : 16,
@@ -230,6 +257,17 @@
                     }
                 });
             }
+        };
+
+        /**
+         *
+         */
+        self.clearOverlays = function() {
+            for (var i = 0; i < self.markers.length; i++ ) {
+                self.markers[i].setMap(null);
+            }
+
+            self.markers.length = 0;
         };
 
         self.fetchCoordinates = function() {

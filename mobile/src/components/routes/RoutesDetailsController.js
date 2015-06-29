@@ -3,10 +3,10 @@
 
     angular.module('commutrMobile.components.routes')
         .controller('RoutesDetailsController', [
-            '$stateParams', 'RoutesComponentService', 'StorageService',
+            '$stateParams', 'RoutesComponentService', 'StorageService', 'ionicMaterialInk',
             RoutesDetailsController]);
 
-    function RoutesDetailsController($stateParams, RoutesComponentService, StorageService) {
+    function RoutesDetailsController($stateParams, RoutesComponentService, StorageService, ionicMaterialInk) {
         var self = this,
             id = $stateParams.id;
 
@@ -27,8 +27,9 @@
             var latitudeLongitude = [],
                 latitudeLongitudeBounds = new google.maps.LatLngBounds(),
                 map = new google.maps.Map(document.getElementById('map_canvas'), {
-                    zoom : 16,
-                    mapTypeId : google.maps.MapTypeId.ROADMAP
+                    mapTypeId : google.maps.MapTypeId.ROADMAP,
+                    mapTypeControl      : false,
+                    streetViewControl   : false
                 });
 
             var coordinates = self.route.coordinates;
@@ -41,6 +42,7 @@
 
             map.setCenter(latitudeLongitudeBounds.getCenter());
             map.fitBounds(latitudeLongitudeBounds);
+
             // routes
             // initialize the path array
             var path = new google.maps.MVCArray();
@@ -71,5 +73,8 @@
                 }
             }
         };
+
+        // run ink effect
+        ionicMaterialInk.displayEffect();
     }
 })();

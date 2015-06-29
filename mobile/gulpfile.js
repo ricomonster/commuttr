@@ -6,7 +6,8 @@ var gulp        = require('gulp'),
     runSequence = require('run-sequence'),
     fs          = require('fs'),
     path        = require('path'),
-    merge       = require('merge-stream');
+    merge       = require('merge-stream'),
+    shell		= require('gulp-shell');
 
 // set the paths
 var paths = {
@@ -54,7 +55,7 @@ gulp.task('build-bower', function() {
         // angular ui router
         paths.bower + '/angular-ui-router/release/*',
         // ionic
-        paths.bower + '/ionic/js/*',
+        paths.bower + '/ionic/release/js/*',
         // ionic material
         paths.bower + '/ionic-material/dist/ionic.material.js',
         paths.bower + '/ionic-material/dist/ionic.material.min.js',
@@ -68,7 +69,7 @@ gulp.task('build-bower', function() {
     // stylesheets
     gulp.src([
         // ionic
-        paths.bower + '/ionic/css/*',
+        paths.bower + '/ionic/release/css/*',
         // ionoic material
         paths.bower + '/ionic-material/dist/ionic.material.css',
         paths.bower + '/ionic-material/dist/ionic.material.min.css',
@@ -77,19 +78,19 @@ gulp.task('build-bower', function() {
     // fonts
     gulp.src([
         // ionic
-        paths.bower + '/ionic/fonts/*'
+        paths.bower + '/ionic/release/fonts/*'
     ]).pipe(gulp.dest(paths.www + '/vendor/fonts'));
 });
 
 // build app
 gulp.task('build-app', function() {
     return gulp.src([
-            paths.src + '/app.module.js',
-            paths.src + '/app.config.js',
-            paths.src + '/app.constants.js',
-            paths.src + '/app.routes.js',
-            paths.src + '/app.run.js'
-        ])
+        paths.src + '/app.module.js',
+        paths.src + '/app.config.js',
+        paths.src + '/app.constants.js',
+        paths.src + '/app.routes.js',
+        paths.src + '/app.run.js'
+    ])
         .pipe(concat('app.js'))
         .pipe(plumber({
             errorHandler: onError
@@ -116,6 +117,26 @@ gulp.task('build-components', function() {
                 errorHandler: onError
             }))
             .pipe(gulp.dest(paths.www + '/app/components/' + folder));
+    });
+
+    return merge(tasks);
+});
+
+// build directives
+gulp.task('build-directives', function() {
+    var folders = getFolders(paths.src + '/directives/');
+
+    var tasks = folders.map(function(folder) {
+        return gulp.src(path.join(paths.src + '/directives/', folder, '/*.js'))
+            .pipe(concat(folder + '.js'))
+            .pipe(plumber({
+                errorHandler: onError
+            }))
+            .pipe(uglify())
+            .pipe(plumber({
+                errorHandler: onError
+            }))
+            .pipe(gulp.dest(paths.www + '/app/directives/' + folder));
     });
 
     return merge(tasks);
@@ -160,6 +181,9 @@ gulp.task('watch', function() {
     // watch js files in the components folder
     gulp.watch(paths.src + '/components/**/*.js', ['build-components']);
 
+    // watch js files in the directives folder
+    gulp.watch(paths.src + '/directives/**/*.js', ['build-directives']);
+
     // watch js files in the services folder
     gulp.watch(paths.src + '/services/**/*.js', ['build-services']);
 
@@ -173,12 +197,18 @@ gulp.task('build', function(callback) {
         'build-bower',
         'build-app',
         'build-components',
+        'build-directives',
         'build-services',
         'build-templates',
         callback);
 });
 
+// run ionic task
+gulp.task('run-ionic', shell.task([
+    'ionic serve'
+]));
+
 // setup the default task
 gulp.task('default', function(callback) {
-    runSequence('build', 'watch', callback);
+    runSequence('build', 'watch', 'run-ionic', callback);
 });

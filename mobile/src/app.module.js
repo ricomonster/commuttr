@@ -8,6 +8,7 @@
         'commutrMobile.run',
         'commutrMobile.components.landing',
         'commutrMobile.components.routes',
+        'commutrMobile.directives.applyInk',
         'commutrMobile.services.storage'
     ]);
 
@@ -20,7 +21,11 @@
     // components
     angular.module('commutrMobile.components.landing', ['ionic', 'ionic-material']);
     angular.module('commutrMobile.components.routes', [
-        'ionic', 'ionic-material', 'commutrMobile.services.storage']);
+        'ionic', 'ionic-material', 'commutrMobile.directives.applyInk',
+        'commutrMobile.services.storage']);
+
+    // directives
+    angular.module('commutrMobile.directives.applyInk', []);
 
     // services
     angular.module('commutrMobile.services.storage', ['LocalStorageModule']);

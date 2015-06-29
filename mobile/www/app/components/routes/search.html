@@ -1,9 +1,9 @@
-<ion-view id="route_results_page" title="Route results for keyword"
-ng-controller="RoutesSearchController as rsc">
-    <ion-content class="has-header has-footer">
+<ion-view id="route_results_page" ng-controller="RoutesSearchController as rsc"
+title="Route results for {{ rsc.keyword }}">
+    <ion-content class="has-header">
         <div class="list">
             <a class="item" ng-repeat="route in rsc.results" ng-last-repeat="list"
-            ui-sref="routes.details({ id : route.id })">
+            ui-sref="routes.details({ id : route.id })" apply-ink="results">
                 <h2>{{ route.route_name }}</h2>
                 <p>
                     From <strong>{{ route.origin }}</strong>

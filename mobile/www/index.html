@@ -10,6 +10,23 @@
     <style type="text/css">
         @import url(http://fonts.googleapis.com/css?family=Roboto:500,400italic,700italic,700,500italic,400);
     </style>
+    <style type="text/css">
+        #route_results_page .scroll { height: 100%; }
+        #route_results_page .map { position: relative; height: 60%; }
+
+        #route_results_page .tabs-top > .tabs { position: static; }
+        #route_results_page .tabs-top > .view-container { height: auto; }
+
+        /*#route_results_page .details { padding: 15px; }*/
+
+        #map_canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+        }
+    </style>
 
     <script src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
 
@@ -20,7 +37,7 @@
     <script src="./vendor/javascript/ionic.js"></script>
     <script src="./vendor/javascript/ionic-angular.js"></script>
     <script src="./vendor/javascript/ionic.material.js"></script>
-    <!--<script src="./vendor/javascript/waves.js"></script>-->
+    <script src="./vendor/javascript/waves.js"></script>
 
     <script src="./vendor/javascript/angular-local-storage.min.js"></script>
 
@@ -28,44 +45,11 @@
     <script src="./app/components/landing/landing.js"></script>
     <script src="./app/components/routes/routes.js"></script>
 
+    <script src="./app/directives/apply-ink/apply-ink.js"></script>
+
     <script src="./app/services/storage/storage.js"></script>
 </head>
 <body>
-<ion-side-menus enable-menu-with-back-views="false">
-    <ion-side-menu-content>
-        <ion-nav-bar class="bar-stable bar-balanced">
-            <ion-nav-back-button>
-            </ion-nav-back-button>
-
-            <ion-nav-buttons side="left">
-                <button class="button button-icon button-clear ion-navicon" menu-toggle="left">
-                </button>
-            </ion-nav-buttons>
-        </ion-nav-bar>
-        <ion-nav-view></ion-nav-view>
-    </ion-side-menu-content>
-
-    <ion-side-menu side="left">
-        <ion-header-bar class="bar-stable">
-            <h1 class="title">Left</h1>
-        </ion-header-bar>
-        <ion-content>
-            <ion-list>
-                <ion-item menu-close ng-click="login()">
-                    Login
-                </ion-item>
-                <ion-item menu-close href="#/app/search">
-                    Search
-                </ion-item>
-                <ion-item menu-close href="#/app/browse">
-                    Browse
-                </ion-item>
-                <ion-item menu-close href="#/app/playlists">
-                    Playlists
-                </ion-item>
-            </ion-list>
-        </ion-content>
-    </ion-side-menu>
-</ion-side-menus>
+    <ion-nav-view></ion-nav-view>
 </body>
 </html>

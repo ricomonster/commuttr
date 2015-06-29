@@ -31,7 +31,7 @@
                         $rootScope.$broadcast('logged-in');
 
                         // show some success message
-                        ToastService.show('You have successfully logged in.');
+                        ToastService.show('You have successfully logged in.', 5000);
 
                         // redirect
                         $state.go('landing');

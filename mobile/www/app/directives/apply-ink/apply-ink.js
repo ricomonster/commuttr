@@ -1,0 +1,1 @@
+!function(){"use strict";function n(n){return{restrict:"A",link:function(t,i,e){t.$last===!0&&n(function(){t.$emit("applyInk"+(e.applyInk?"."+e.applyInk:""))})}}}angular.module("commutrMobile.directives.applyInk").directive("applyInk",["$timeout",n])}();

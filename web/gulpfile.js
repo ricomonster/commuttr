@@ -7,7 +7,8 @@ var gulp        = require('gulp'),
     fs          = require('fs'),
     path        = require('path'),
     merge       = require('merge-stream'),
-    runSequence = require('run-sequence');
+    runSequence = require('run-sequence'),
+    shell       = require('gulp-shell');
 
 // set the needed paths
 var paths = {
@@ -141,6 +142,12 @@ gulp.task('build-templates', function() {
         .pipe(gulp.dest(paths.www + '/app/components'));
 });
 
+// run live server
+gulp.task('run-server', shell.task([
+    // run live server and not trigger to open the browser
+    'live-server www/ --no-browser'
+]));
+
 // watch tasks
 gulp.task('watch', function() {
     gulp.watch([
@@ -173,5 +180,5 @@ gulp.task('build', function(callback) {
 });
 
 gulp.task('default', function(callback) {
-    runSequence('build', 'watch', callback);
+    runSequence('build', 'watch', 'run-server', callback);
 });
