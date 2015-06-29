@@ -1,0 +1,15 @@
+<ion-view id="route_results_page" title="Route results for keyword"
+ng-controller="RoutesSearchController as rsc">
+    <ion-content class="has-header has-footer">
+        <div class="list">
+            <a class="item" ng-repeat="route in rsc.results" ng-last-repeat="list"
+            ui-sref="routes.details({ id : route.id })">
+                <h2>{{ route.route_name }}</h2>
+                <p>
+                    From <strong>{{ route.origin }}</strong>
+                    to <strong>{{ route.destination }}</strong>
+                </p>
+            </a>
+        </div>
+    </ion-content>
+</ion-view>

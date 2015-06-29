@@ -1,0 +1,42 @@
+<style>
+    #route_results_page .scroll { height: 100%; }
+    #route_results_page .map { position: relative; height: 60%; }
+
+    #route_results_page .tabs-top > .tabs { position: static; }
+    #route_results_page .tabs-top > .view-container { height: auto; }
+
+    /*#route_results_page .details { padding: 15px; }*/
+
+    #map_canvas {
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+    }
+</style>
+<ion-view id="route_results_page" ng-controller="RoutesDetailsController as rdc"
+title="{{ rdc.route.route_name }}">
+    <ion-content class="has-header">
+        <div class="map" scroll="false">
+            <div id="map_canvas" data-tap-disabled="true"></div>
+        </div>
+        <ion-tabs class="tabs-top tabs-background-balanced tabs-color-light">
+            <ion-tab title="Details" icon="ion-ios-list-outline">
+                <ion-nav-view class="padding">
+                    <h2 class="title">{{ rdc.route.route_name }}</h2>
+                    <div class="route">
+                        From <strong>{{ rdc.route.origin }}</strong>
+                        to <strong>{{ rdc.route.destination }}</strong>
+                    </div>
+                </ion-nav-view>
+            </ion-tab>
+            <ion-tab title="Reviews" icon="ion-ios-chatbubble-outline">
+                <ion-nav-view>asdfasdfasdf</ion-nav-view>
+            </ion-tab>
+            <!--<ion-tab title="Account">-->
+                <!--<ion-nav-view>asdfasdf</ion-nav-view>-->
+            <!--</ion-tab>-->
+        </ion-tabs>
+    </ion-content>
+</ion-view>

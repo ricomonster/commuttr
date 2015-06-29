@@ -21,6 +21,7 @@ Route::group(['prefix' => 'api/v2.0', 'middleware' => 'corsFilter'], function() 
     });
 
     Route::group(['prefix' => 'routes'], function() {
+        Route::get('get_route', 'ApiRoutesController@getRoute');
         Route::get('search', 'ApiRoutesController@searchRoutes');
 
         Route::post('create', 'ApiRoutesController@create');

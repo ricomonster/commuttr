@@ -82,6 +82,33 @@ class ApiRoutesController extends Controller
             'route' => $route->toArray()]);
     }
 
+    public function getRoute(Request $request)
+    {
+        $routeId = $request->input('route_id');
+
+        // check if route_id is set
+        if (!$routeId || empty($routeId)) {
+            // return an error message
+            return $this->setStatusCode(self::BAD_REQUEST)
+                ->respondWithError('Route ID is required.');
+        }
+
+        // get route
+        $route = Route::with(['contributor', 'coordinates', 'modeOfTransportation',
+            'viaRoutes'])
+            ->where('id', '=', $routeId)
+            ->first();
+
+        // check if route exists
+        if (empty($route)) {
+            return $this->setStatusCode(self::NOT_FOUND)
+                ->respondWithError('Route does not exists.');
+        }
+
+        // return routes
+        return $this->respond(['routes' => $route->toArray()]);
+    }
+
     public function searchRoutes(Request $request)
     {
         $keyword = $request->input('keyword');

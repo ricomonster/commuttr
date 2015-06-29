@@ -1,3 +1,8 @@
+<style>
+    .routes-search-page .route-results .route-name { font-weight: bold; }
+    .routes-search-page .route-results .origin,
+    .routes-search-page .route-results .destination { font-weight: bold; }
+</style>
 <div class="routes-search-page" ng-controller="RoutesSearchController as rsc">
     <div layout="row" flex layout-align="center start" layout-wrap layout-fill>
         <div layout="column" flex="60" class="route-results" layout-padding>
@@ -10,7 +15,8 @@
                         <div flex class="md-list-item-text" layout="row">
                             <p class="route-name" flex="30">{{ result.route_name }}</p>
                             <p flex>
-                                From {{ result.origin }} to {{ result.destination }}
+                                From <span class="origin">{{ result.origin }}</span>
+                                to <span class="destination">{{ result.destination }}</span>
                             </p>
                         </div>
                     </md-list-item>
