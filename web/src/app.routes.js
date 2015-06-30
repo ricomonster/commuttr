@@ -15,6 +15,19 @@
                 templateUrl : 'app/components/landing/landing.html'
             })
 
+            .state('account', {
+                url : '/account',
+                templateUrl : 'app/components/account/account.html'
+            })
+            .state('account.details', {
+                url : '/details',
+                templateUrl : 'app/components/account-details/account-details.html'
+            })
+            .state('account.password', {
+                url : '/password',
+                templateUrl : 'app/components/account-password/account-password.html'
+            })
+
             .state('auth', {
                 url : '/auth',
                 templateUrl : '/app/components/auth/auth.html'
@@ -39,9 +52,6 @@
                         templateUrl : 'app/components/routes/search.html'
                     }
                 }
-            })
-            .state('routes.details', {
-                url : '/navigate/:id'
             })
             .state('routes.create', {
                 url : '/create',

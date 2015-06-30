@@ -1,27 +1,113 @@
 <style>
-    .routes-search-page .route-results .route-name { font-weight: bold; }
-    .routes-search-page .route-results .origin,
-    .routes-search-page .route-results .destination { font-weight: bold; }
-</style>
-<div class="routes-search-page" ng-controller="RoutesSearchController as rsc">
-    <div layout="row" flex layout-align="center start" layout-wrap layout-fill>
-        <div layout="column" flex="60" class="route-results" layout-padding>
-            <h3>Route results for "{{ rsc.keyword }}"</h3>
+    #routes_search_page .route-results,
+    #routes_search_page .map-wrapper { position: relative; overflow: hidden;  }
+    #routes_search_page .route-results .result-contents { overflow: hidden; }
+    #routes_search_page .route-results .result-contents .result-lists {
+        overflow: auto;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: -100%;
+        right: 100%;
+        transition: .5s;
+    }
 
-            <md-content class="md-whiteframe-z2">
-                <md-list>
-                    <md-list-item ng-repeat="result in rsc.searchResults"
-                    ng-click="rsc.goToRouteDetails(result)">
-                        <div flex class="md-list-item-text" layout="row">
-                            <p class="route-name" flex="30">{{ result.route_name }}</p>
-                            <p flex>
-                                From <span class="origin">{{ result.origin }}</span>
-                                to <span class="destination">{{ result.destination }}</span>
-                            </p>
+    #routes_search_page .route-results .result-contents .result-lists.active { left: 0; right: 0; }
+
+    #routes_search_page .route-results .result-contents .md-list-item-text .md-title { margin-bottom: 0; }
+    #routes_search_page .route-results .result-contents .md-list-item-text p { margin-top: 0; }
+
+    #routes_search_page .route-results .result-contents .route-details {
+        left: 100%;
+        right: -100%;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        transition: .5s;
+    }
+    #routes_search_page .route-results .result-contents .route-details.active { left: 0; right: 0; }
+
+    #routes_search_page .map-wrapper .md-fab { position: absolute; right: 20px; top: 20px; }
+    #routes_search_page .map-wrapper .md-fab .fa { font-size: 20px; height: 20px; }
+
+    #map_canvas {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+    }
+</style>
+<div id="routes_search_page" ng-controller="RoutesSearchController as rsc">
+    <div layout="row" flex layout-wrap layout-fill>
+        <div layout="column" flex="30" class="route-results md-whiteframe-z1">
+            <md-content class="result-contents" layout="row" flex>
+                <div class="result-lists" ng-class="{ 'active' : !rsc.showRouteDetails }">
+                    <md-list>
+                        <md-subheader class="md-no-sticky">
+                            Results for "{{ rsc.keyword }}"
+                        </md-subheader>
+                        <md-list-item ng-repeat="result in rsc.results"
+                        ng-click="rsc.goToRouteDetails(result)">
+                            <div class="md-list-item-text">
+                                <h2 class="md-title">{{ result.route_name }}</h2>
+                                <p>
+                                    From <strong>{{ result.origin }}</strong>
+                                    to <strong>{{ result.destination }}</strong>
+                                </p>
+                            </div>
+                            <md-divider></md-divider>
+                        </md-list-item>
+                    </md-list>
+                </div>
+                <div class="route-details" ng-class="{ 'active' : rsc.showRouteDetails }">
+                    <md-toolbar>
+                        <div class="md-toolbar-tools">
+                            <md-button class="md-icon-button" aria-label="Go back"
+                            style="height: auto;" ng-click="rsc.goBackToResults()">
+                                <md-icon class="fa fa-chevron-left"></md-icon>
+                            </md-button>
+                            <h3 class="md-flex">{{ rsc.routeDetails.route_name }}</h3>
                         </div>
-                    </md-list-item>
-                </md-list>
+                    </md-toolbar>
+                    <md-content>
+                        <md-tabs md-dynamic-height md-border-bottom md-stretch-tabs="always">
+                            <md-tab label="Details">
+                                <md-content class="md-padding">
+                                    <div class="origin-destination">
+                                        <strong>{{ rsc.routeDetails.origin }}</strong> &dash;
+                                        <strong>{{ rsc.routeDetails.destination }}</strong>
+                                    </div>
+
+                                    <h3 class="md-title">Via:</h3>
+                                    <ul class="via-routes">
+                                        <li ng-repeat="route in rsc.routeDetails.via_routes">
+                                            <a ui-sref="routes.search({ keyword : route.location })">
+                                                {{ route.location }}
+                                            </a>
+                                        </li>
+                                    </ul>
+
+                                    <h3 class="md-title">Modes of transportation</h3>
+                                    <ul class="mode-of-transportations">
+                                        <li ng-repeat="transportation in rsc.routeDetails.mode_of_transportation">
+                                            {{ transportation.vehicle_type | uppercase }}
+                                        </li>
+                                    </ul>
+                                </md-content>
+                            </md-tab>
+                            <md-tab label="Reviews">
+                                <md-content class="md-padding">
+
+                                </md-content>
+                            </md-tab>
+                        </md-tabs>
+                    </md-content>
+                </div>
             </md-content>
+        </div>
+        <div layout="column" flex="70" class="map-wrapper">
+            <div id="map_canvas"></div>
         </div>
     </div>
 </div>

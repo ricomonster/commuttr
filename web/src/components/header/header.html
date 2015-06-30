@@ -1,14 +1,17 @@
-<md-toolbar class="md-whiteframe-z1"
-    ng-controller="HeaderController as hc">
+<md-toolbar class="md-whiteframe-z1" ng-controller="HeaderController as hc">
     <div class="md-toolbar-tools">
         <h3><a href="/#/">Commuttr</a></h3>
         <span flex></span>
+        <md-button aria-label="Search" class="md-icon-button"
+        style="height: auto;">
+            <md-icon class="fa fa-search"></md-icon>
+        </md-button>
         <md-button ui-sref="auth" aria-label="Login or Signup" ng-if="!hc.loggedIn"
         style="height: auto;">
             Login or Signup
         </md-button>
         <md-button aria-label="Show sidebar" ng-if="hc.loggedIn"
-        style="height: auto;" ng-click="hc.showSidebar()">
+        style="height: auto;" ng-click="hc.showSidebar()" class="md-icon-button" >
             <md-icon class="fa fa-ellipsis-v"></md-icon>
         </md-button>
     </div>

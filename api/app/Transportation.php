@@ -21,6 +21,13 @@ class Transportation extends Model
     protected $fillable = ['vehicle_type'];
 
     /**
+     * The attributes excluded from the model's JSON form.
+     *
+     * @var array
+     */
+    protected $hidden = ['id', 'pivot', 'created_at', 'updated_at'];
+
+    /**
      * Route Relationship
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany

@@ -53,6 +53,7 @@
 
         self.select = function(item, list) {
             var id = list.indexOf(item);
+
             if (id > -1) {
                 list.splice(id, 1);
             } else {
