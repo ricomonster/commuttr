@@ -25,7 +25,7 @@ class Transportation extends Model
      *
      * @var array
      */
-    protected $hidden = ['id', 'pivot', 'created_at', 'updated_at'];
+    protected $hidden = ['pivot', 'created_at', 'updated_at'];
 
     /**
      * Route Relationship

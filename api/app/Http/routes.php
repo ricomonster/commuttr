@@ -35,5 +35,6 @@ Route::group(['prefix' => 'api/v2.0', 'middleware' => 'corsFilter'], function() 
         Route::get('get_user', 'ApiUsersController@getUser');
 
         Route::post('create', 'ApiUsersController@create');
+        Route::post('update_details', 'ApiUsersController@update');
     });
 });

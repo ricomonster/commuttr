@@ -21,11 +21,19 @@
             })
             .state('account.details', {
                 url : '/details',
-                templateUrl : 'app/components/account-details/account-details.html'
+                views : {
+                    'account_contents' : {
+                        templateUrl : 'app/components/account-details/account-details.html'
+                    }
+                }
             })
             .state('account.password', {
                 url : '/password',
-                templateUrl : 'app/components/account-password/account-password.html'
+                views : {
+                    'account_contents' : {
+                        templateUrl : 'app/components/account-password/account-password.html'
+                    }
+                }
             })
 
             .state('auth', {

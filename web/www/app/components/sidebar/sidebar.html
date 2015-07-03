@@ -17,8 +17,8 @@
     <md-sidenav class="site-sidenav md-sidenav-right md-whiteframe-z2"
     md-component-id="right" style="height: 100%;">
         <md-toolbar class="md-whiteframe-z1">
-            <h4><span>Rico Maglayon</span></h4>
-            <h6><span>rmaglayon@gmail.com</span></h6>
+            <h4><span>{{ sc.user.name }}</span></h4>
+            <h6><span>{{ sc.user.email }}</span></h6>
         </md-toolbar>
 
         <md-list>
@@ -30,6 +30,11 @@
             <md-list-item>
                 <md-button ui-sref="routes.my" ng-click="sc.closeSidebar()">
                     My Routes
+                </md-button>
+            </md-list-item>
+            <md-list-item>
+                <md-button ui-sref="driver.vehicles" ng-click="sc.closeSidebar()">
+                    My Vehicles
                 </md-button>
             </md-list-item>
             <md-divider></md-divider>

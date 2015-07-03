@@ -8,6 +8,9 @@
     function SidebarController($mdSidenav, $rootScope, AuthService) {
         var self = this;
 
+        // assign user details
+        self.user = AuthService.user();
+
         // logs out the user
         self.logout = function() {
             // log out the user

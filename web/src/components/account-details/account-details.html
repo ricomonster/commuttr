@@ -1,0 +1,25 @@
+<div id="account_details_page" ng-controller="AccountDetailsController as adc">
+    <div layout="row" flex layout-align="center start">
+        <md-content layout="column" flex="50" class="md-whiteframe-z1" layout-padding>
+            <h1 class="md-display-1">Account Details</h1>
+
+            <form ng-submit="adc.submitAccountDetails()">
+                <md-input-container>
+                    <label>Name</label>
+                    <input type="text" ng-model="adc.account.name">
+                    <span class="error-handler" ng-if="adc.formErrors.name">
+                            {{ adc.formErrors.name[0] }}
+                        </span>
+                </md-input-container>
+                <md-input-container>
+                    <label>Email</label>
+                    <input type="text" ng-model="adc.account.email">
+                </md-input-container>
+
+                <div class="submit-button-wrapper">
+                    <md-button type="submit" class="md-raised md-primary">Save</md-button>
+                </div>
+            </form>
+        </md-content>
+    </div>
+</div>

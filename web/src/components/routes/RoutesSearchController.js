@@ -23,13 +23,16 @@
         // do search using keyword to the API
         RoutesComponentService.search($stateParams.keyword)
             .success(function(response) {
-                if (response.results) {
+                if (response.results.length > 0) {
                     self.results = response.results;
                     self.showResults = true;
 
                     // load the map
                     self.loadRoute(self.results[0].coordinates);
                 }
+
+                // no results
+                ToastService.hide();
             })
             .error(function(response) {
 

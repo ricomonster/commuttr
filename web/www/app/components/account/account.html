@@ -1,0 +1,17 @@
+<!--<div ui-view="account_contents"></div>-->
+<div ng-controller="AccountController as ac">
+    <md-content>
+        <md-tabs md-dynamic-height md-border-bottom md-center-tabs="false">
+            <md-tab label="Account Details">
+                <md-content class="md-padding">
+                    <div ng-include="'app/components/account-details/account-details.html'"></div>
+                </md-content>
+            </md-tab>
+            <md-tab label="Password">
+                <md-content class="md-padding">
+
+                </md-content>
+            </md-tab>
+        </md-tabs>
+    </md-content>
+</div>

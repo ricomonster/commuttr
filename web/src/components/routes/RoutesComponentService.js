@@ -2,9 +2,9 @@
     'use strict';
 
     angular.module('commuttrApp.routesComponents')
-        .factory('RoutesComponentService', ['$http', 'AuthService', RoutesComponentService]);
+        .factory('RoutesComponentService', ['$http', 'AuthService', 'CONFIG', RoutesComponentService]);
 
-    function RoutesComponentService($http, AuthService) {
+    function RoutesComponentService($http, AuthService, CONFIG) {
         return {
             create : function(name, destination, origin, viceVersa, viaRoutes, vehicles, coordinates) {
                 // prepare the data to be sent to the API
@@ -38,15 +38,15 @@
                     }
                 }
 
-                return $http.post('http://localhost:8000/api/v2.0/routes/create?user_id=' +
+                return $http.post(CONFIG.API_URL + 'routes/create?user_id=' +
                     AuthService.user().id, data);
             },
             search : function(keyword) {
-                return $http.get('http://localhost:8000/api/v2.0/routes/search?keyword=' +
+                return $http.get(CONFIG.API_URL + 'routes/search?keyword=' +
                     (keyword || ''));
             },
             vehicles : function() {
-                return $http.get('http://localhost:8000/api/v2.0/transportation/vehicle_lists');
+                return $http.get(CONFIG.API_URL + 'transportation/vehicle_lists');
             }
         }
     }

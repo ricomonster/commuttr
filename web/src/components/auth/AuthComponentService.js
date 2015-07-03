@@ -1,16 +1,16 @@
 (function() {
     angular.module('commuttrApp.authComponents')
-        .factory('AuthComponentService', ['$http', AuthComponentService]);
+        .factory('AuthComponentService', ['$http', 'CONFIG', AuthComponentService]);
 
-    function AuthComponentService($http) {
+    function AuthComponentService($http, CONFIG) {
         return {
             register : function(email, password, name, type) {
-                return $http.post('http://localhost:8000/api/v2.0/users/create',
+                return $http.post(CONFIG.API_URL + 'users/create',
                     'email=' + (email || ' ') + '&password=' + (password || ' ') +
                     '&name=' + (name || ' ') + '&type=' + (type || ' '));
             },
             login : function(email, password) {
-                return $http.post('http://localhost:8000/api/v2.0/auth/login',
+                return $http.post(CONFIG.API_URL + 'auth/login',
                     'email=' + (email || ' ') + '&password=' + (password || ''));
             }
         }
