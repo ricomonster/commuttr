@@ -1,7 +1,7 @@
 (function() {
     'use strict';
 
-    angular.module('commuttrApp.headerComponents')
+    angular.module('commuttrApp.components.header')
         .controller('HeaderController', ['$rootScope', 'AuthService', HeaderController]);
 
     function HeaderController($rootScope, AuthService) {
@@ -23,8 +23,6 @@
 
         // listen for a logout event
         $rootScope.$on('logged-out', function() {
-            console.log('asdf');
-
             self.user = AuthService.user();
             self.loggedIn = (self.user);
         });

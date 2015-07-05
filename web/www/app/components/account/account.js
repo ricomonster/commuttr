@@ -1,1 +1,1 @@
-!function(){"use strict";function o(){}angular.module("commuttrApp.accountComponents").controller("AccountController",[o])}();
+!function(){"use strict";function o(){}angular.module("commuttrApp.components.account").controller("AccountController",[o])}();

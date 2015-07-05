@@ -42,4 +42,14 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
     {
         return $this->hasMany('Commuttr\Route');
     }
+
+    /**
+     * Vehicle Relationship
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function vehicles()
+    {
+        return $this->hasMany('Commuttr\Vehicle');
+    }
 }

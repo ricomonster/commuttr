@@ -11,8 +11,8 @@
             Login or Signup
         </md-button>
         <md-button aria-label="Show sidebar" ng-if="hc.loggedIn"
-        style="height: auto;" ng-click="hc.showSidebar()" class="md-icon-button" >
-            <md-icon class="fa fa-ellipsis-v"></md-icon>
+        style="height: auto;" ng-click="hc.showSidebar()">
+            {{ hc.user.name }}
         </md-button>
     </div>
 </md-toolbar>

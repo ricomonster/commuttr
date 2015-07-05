@@ -1,10 +1,8 @@
 (function() {
     'use strict';
 
-    angular.module('commuttrApp.routesComponents')
+    angular.module('commuttrApp.components.route')
         .controller('RoutesController', [RoutesController]);
 
-    function RoutesController() {
-        console.log('tada');
-    }
+    function RoutesController() {}
 })();

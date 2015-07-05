@@ -1,11 +1,13 @@
 (function() {
     'use strict';
 
-    angular.module('commuttrApp.routesComponents')
-        .controller('RoutesCreateController',
-            ['RoutesComponentService', 'ToastService', 'StorageService', RoutesCreateController]);
+    angular.module('commuttrApp.components.routeCreate')
+        .controller('RouteCreateController', [
+            'AuthService', 'ToastService', 'StorageService', 'RouteCreateService',
+            RouteCreateController]);
 
-    function RoutesCreateController(RoutesComponentService, ToastService, StorageService) {
+    function RouteCreateController(AuthService, ToastService, StorageService,
+                                   RouteCreateService) {
         var self = this;
 
         self.vehicleLists = [];
@@ -28,15 +30,21 @@
         self.polylines = [];
         self.isFirst = true;
 
-        /**
-         * Get lists of vehicles from the API
-         */
-        RoutesComponentService.vehicles()
-            .success(function(response) {
-                if (response.vehicles) {
-                    self.vehicleLists = response.vehicles;
-                }
-            });
+        self.initialize = function() {
+            // fetch the details of the user
+            self.user = AuthService.user();
+
+            // get lists of transportation vehicles
+            RouteCreateService.transportation()
+                .success(function(response) {
+                    if (response.vehicles) {
+                        self.vehicleLists = response.vehicles;
+                    }
+                });
+
+            // run google maps
+            self.initializeGoogleMaps();
+        };
 
         /**
          * adds another input box for the via routes
@@ -79,9 +87,9 @@
 
             // send request to the API
             // name, destination, origin, viceVersa, viaRoutes, vehicles, coordinates
-            RoutesComponentService
+            RouteCreateService
                 .create(route.route_name, route.destination, route.origin, route.vice_versa,
-                    route.via_route, route.vehicles, route.coordinates)
+                route.via_route, route.vehicles, route.coordinates)
                 .success(function(response) {
                     if (response.route) {
                         // clear the map and form
@@ -283,6 +291,6 @@
             }
         };
 
-        self.initializeGoogleMaps();
+        self.initialize();
     }
 })();

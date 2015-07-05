@@ -1,7 +1,7 @@
 (function() {
     'use strict';
 
-    angular.module('commuttrApp.authComponents')
+    angular.module('commuttrApp.components.auth')
         .controller('AuthLoginController', [
             '$rootScope', '$state', 'AuthComponentService', 'StorageService', 'ToastService',
             AuthLoginController]);

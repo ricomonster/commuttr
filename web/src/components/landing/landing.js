@@ -1,7 +1,7 @@
 (function() {
     'use strict';
 
-    angular.module('commuttrApp.landingComponents', ['ui.router'])
+    angular.module('commuttrApp.components.landing')
         .controller('LandingController', ['$state', LandingController]);
 
     function LandingController($state) {

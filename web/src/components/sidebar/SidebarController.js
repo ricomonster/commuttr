@@ -1,7 +1,7 @@
 (function() {
     'use strict';
 
-    angular.module('commuttrApp.sidebarComponents')
+    angular.module('commuttrApp.components.sidebar')
         .controller('SidebarController', ['$mdSidenav', '$rootScope', 'AuthService',
             SidebarController]);
 
@@ -31,6 +31,11 @@
         // listen for sidebar to be toggled
         $rootScope.$on('show-sidebar', function() {
             $mdSidenav('right').toggle();
+        });
+
+        // listen for logged in event
+        $rootScope.$on('logged-in', function() {
+            self.user = AuthService.user();
         });
     }
 })();

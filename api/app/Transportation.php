@@ -36,4 +36,14 @@ class Transportation extends Model
     {
         return $this->hasMany('Commuttr\Route', 'route_transportation', 'transportation_id', 'route_id');
     }
+
+    /**
+     * Transportation Relationship
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function vehicle()
+    {
+        return $this->belongsTo('Commuttr\Vehicle', 'user_id');
+    }
 }

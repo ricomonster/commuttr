@@ -49,6 +49,16 @@
                 templateUrl : 'app/components/auth/register.html'
             })
 
+            .state('vehicle', {
+                url : '/vehicle'
+            })
+            .state('vehicle.create', {
+                url : '/create'
+            })
+            .state('vehicle.addRoute', {
+                url : '/add-route'
+            })
+
             .state('routes', {
                 url : '/routes',
                 templateUrl : 'app/components/routes/routes.html'
@@ -57,7 +67,7 @@
                 url : '/search?keyword',
                 views : {
                     'routes_content' : {
-                        templateUrl : 'app/components/routes/search.html'
+                        templateUrl : 'app/components/route-search/search.html'
                     }
                 }
             })
@@ -65,7 +75,7 @@
                 url : '/create',
                 views : {
                     'routes_content' : {
-                        templateUrl : 'app/components/routes/create.html'
+                        templateUrl : 'app/components/route-create/create.html'
                     }
                 }
             })

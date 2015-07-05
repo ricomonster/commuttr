@@ -1,7 +1,7 @@
 (function() {
     'use strict';
 
-    angular.module('commuttrApp.accountDetailsComponents')
+    angular.module('commuttrApp.components.accountDetails')
         .controller('AccountDetailsController', [
             'AuthService', 'StorageService', 'ToastService', 'AccountDetailsService',
             AccountDetailsController]);

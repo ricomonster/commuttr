@@ -1,13 +1,12 @@
 (function() {
     'use strict';
 
-    angular.module('commuttrApp.routesComponents')
-        .controller('RoutesSearchController', [
-            '$state', '$stateParams', 'RoutesComponentService', 'ToastService', 'StorageService',
-            RoutesSearchController]);
+    angular.module('commuttrApp.components.routeSearch')
+        .controller('RouteSearchController', [
+            '$state', '$stateParams', 'ToastService', 'StorageService', 'RouteSearchService',
+            RouteSearchController]);
 
-    function RoutesSearchController($state, $stateParams, RoutesComponentService, ToastService,
-                                    StorageService) {
+    function RouteSearchController($state, $stateParams, ToastService, StorageService, RouteSearchService) {
         var self = this;
 
         self.map                = '';
@@ -21,7 +20,7 @@
         var path, directionService, polyline;
 
         // do search using keyword to the API
-        RoutesComponentService.search($stateParams.keyword)
+        RouteSearchService.search($stateParams.keyword)
             .success(function(response) {
                 if (response.results.length > 0) {
                     self.results = response.results;

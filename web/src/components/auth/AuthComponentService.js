@@ -1,5 +1,5 @@
 (function() {
-    angular.module('commuttrApp.authComponents')
+    angular.module('commuttrApp.components.auth')
         .factory('AuthComponentService', ['$http', 'CONFIG', AuthComponentService]);
 
     function AuthComponentService($http, CONFIG) {

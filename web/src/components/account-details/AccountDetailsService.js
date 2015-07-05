@@ -1,7 +1,7 @@
 (function() {
     'use strict';
 
-    angular.module('commuttrApp.accountDetailsComponents')
+    angular.module('commuttrApp.components.accountDetails')
         .factory('AccountDetailsService', ['$http', 'CONFIG', AccountDetailsService]);
 
     function AccountDetailsService($http, CONFIG) {

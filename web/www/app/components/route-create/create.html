@@ -1,0 +1,111 @@
+<style>
+    .routes-create-page .map-wrapper,
+    .routes-create-page .form-wrapper { position: relative; }
+
+    .routes-create-page .form-wrapper .form-wrapper-content {
+        overflow: auto;
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+    }
+
+    .routes-create-page .form-wrapper .form-wrapper-content form .error-handler {
+        background-color: transparent;
+        border-radius: 0;
+        color: rgb(244,67,54);
+        display: block;
+        margin: 0;
+        order: 3;
+        padding: 15px 0 5px;
+    }
+
+    #map_canvas {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+    }
+
+    .md-select-menu-container.md-active { height: auto; }
+</style>
+<div class="routes-create-page" ng-controller="RouteCreateController as rcc">
+    <div layout="row" flex layout-wrap layout-fill>
+        <div layout="column" flex="70" class="map-wrapper">
+            <div id="map_canvas"></div>
+        </div>
+        <div layout="column" flex="30" class="form-wrapper">
+            <div class="form-wrapper-content" layout-padding>
+                <h5 class="md-headline" style="margin: 10px 0;">Create a route</h5>
+                <form ng-submit="rcc.submitRoute()">
+                    <md-input-container>
+                        <label>Route name</label>
+                        <input type="text" ng-model="rcc.route.route_name">
+                        <span class="error-handler" ng-if="rcc.formErrors.route_name">
+                            {{ rcc.formErrors.route_name[0] }}
+                        </span>
+                    </md-input-container>
+
+                    <md-input-container>
+                        <label>Origin</label>
+                        <input type="text" ng-model="rcc.route.origin">
+                        <span class="error-handler" ng-if="rcc.formErrors.origin">
+                            {{ rcc.formErrors.origin[0] }}
+                        </span>
+                    </md-input-container>
+
+                    <md-input-container>
+                        <label>Destination</label>
+                        <input type="text" ng-model="rcc.route.destination">
+                        <span class="error-handler" ng-if="rcc.formErrors.destination">
+                            {{ rcc.formErrors.destination[0] }}
+                        </span>
+                    </md-input-container>
+
+                    <div layout="row" layout-wrap>
+                        <div ng-repeat="vehicle in rcc.vehicleLists" class="standard" flex="50">
+                            <label>
+                                <md-checkbox ng-checked="rcc.exists(vehicle, rcc.route.vehicles)"
+                                ng-click="rcc.select(vehicle, rcc.route.vehicles)">
+                                    {{ vehicle.vehicle_type | uppercase }}
+                                </md-checkbox>
+                            </label>
+                        </div>
+                        <span class="error-handler" ng-if="rcc.formErrors.vehicles">
+                            {{ rcc.formErrors.vehicles[0] }}
+                        </span>
+                    </div>
+
+                    <md-input-container ng-repeat="(key, viaRoute) in rcc.route.via_route">
+                        <label>Via Route</label>
+                        <input type="text" ng-model="rcc.route.via_route[key].location"/>
+                    </md-input-container>
+                    <div layout="row">
+                        <span flex></span>
+                        <md-button class="md-primary" ng-click="rcc.addViaRoute($event)">
+                            <md-icon class="fa fa-plus"></md-icon>
+                            Add a Via Route
+                        </md-button>
+                    </div>
+
+                    <md-input-container>
+                        <label>Tell us something about this route. (Optional)</label>
+                        <textarea ng-model="rcc.route.details" columns="1"></textarea>
+                    </md-input-container>
+
+                    <div class="standard">
+                        <label>
+                            <md-checkbox>Via Versa</md-checkbox>
+                        </label>
+                    </div>
+
+                    <div class="submit-button-wrapper">
+                        <md-button class="md-raised md-primary">Create Route</md-button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

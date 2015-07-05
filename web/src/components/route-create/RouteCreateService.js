@@ -1,12 +1,12 @@
 (function() {
     'use strict';
 
-    angular.module('commuttrApp.routesComponents')
-        .factory('RoutesComponentService', ['$http', 'AuthService', 'CONFIG', RoutesComponentService]);
+    angular.module('commuttrApp.components.routeCreate')
+        .factory('RouteCreateService', ['$http', 'AuthService', 'CONFIG', RouteCreateService]);
 
-    function RoutesComponentService($http, AuthService, CONFIG) {
+    function RouteCreateService($http, AuthService, CONFIG) {
         return {
-            create : function(name, destination, origin, viceVersa, viaRoutes, vehicles, coordinates) {
+            create: function (name, destination, origin, viceVersa, viaRoutes, vehicles, coordinates) {
                 // prepare the data to be sent to the API
                 var data = 'route_name=' + (name || '') + '&destination=' + (destination || '') +
                     '&origin=' + (origin || '') + '&vice_versa=' + (viceVersa || 0);
@@ -33,20 +33,19 @@
                 if (coordinates.length > 0) {
                     // loop to the get the coordinates
                     for (var c = 0; c < coordinates.length; c++) {
-                        data += '&coordinates['+c+'][latitude]=' + coordinates[c].latitude +
-                            '&coordinates['+c+'][longitude]=' + coordinates[c].longitude;
+                        data += '&coordinates[' + c + '][latitude]=' + coordinates[c].latitude +
+                        '&coordinates[' + c + '][longitude]=' + coordinates[c].longitude;
                     }
                 }
 
                 return $http.post(CONFIG.API_URL + 'routes/create?user_id=' +
-                    AuthService.user().id, data);
+                AuthService.user().id, data);
             },
-            search : function(keyword) {
-                return $http.get(CONFIG.API_URL + 'routes/search?keyword=' +
-                    (keyword || ''));
-            },
-            vehicles : function() {
+            transportation : function() {
                 return $http.get(CONFIG.API_URL + 'transportation/vehicle_lists');
+            },
+            vehicles : function(id) {
+                return $http.get(CONFIG.API_URL + 'vehicles/lists?user_id=' + id);
             }
         }
     }
