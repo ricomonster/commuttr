@@ -11,6 +11,10 @@
         'commuttrApp.components.routeSearch',
         'commuttrApp.components.route',
         'commuttrApp.components.sidebar',
+        'commuttrApp.components.vehicle',
+        'commuttrApp.components.vehicleCreate',
+        'commuttrApp.components.vehicleList',
+        'commuttrApp.components.vehicleDetails',
         'commuttrApp.authServices',
         'commuttrApp.storageServices',
         'commuttrApp.toastServices',
@@ -61,6 +65,22 @@
         'commuttrApp.constants']);
 
     angular.module('commuttrApp.components.sidebar', ['ui.router', 'ngMaterial']);
+
+    // vehicle
+    angular.module('commuttrApp.components.vehicle', ['ui.router', 'ngMaterial']);
+
+    // vehicle create
+    angular.module('commuttrApp.components.vehicleCreate', [
+        'ngMaterial', 'commuttrApp.authServices', 'commuttrApp.toastServices',
+        'commuttrApp.constants']);
+
+    // vehicle list
+    angular.module('commuttrApp.components.vehicleList', ['ui.router', 'ngMaterial',
+        'commuttrApp.authServices', 'commuttrApp.toastServices', 'commuttrApp.constants']);
+
+    // vehicle details
+    angular.module('commuttrApp.components.vehicleDetails', ['ui.router', 'ngMaterial',
+        'commuttrApp.toastServices', 'commuttrApp.constants']);
 
     // Services
     angular.module('commuttrApp.authServices', ['commuttrApp.storageServices',

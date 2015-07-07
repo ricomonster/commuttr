@@ -39,6 +39,7 @@ Route::group(['prefix' => 'api/v2.0', 'middleware' => 'corsFilter'], function() 
     });
 
     Route::group(['prefix' => 'vehicles'], function() {
+        Route::get('detail', 'ApiVehiclesController@detail');
         Route::get('lists', 'ApiVehiclesController@lists');
 
         Route::post('create', 'ApiVehiclesController@create');

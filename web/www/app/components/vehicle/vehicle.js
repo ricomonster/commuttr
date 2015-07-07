@@ -1,0 +1,1 @@
+!function(){"use strict";function o(){}angular.module("commuttrApp.components.vehicle").controller("VehicleController",o)}();

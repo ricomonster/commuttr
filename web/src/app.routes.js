@@ -49,16 +49,6 @@
                 templateUrl : 'app/components/auth/register.html'
             })
 
-            .state('vehicle', {
-                url : '/vehicle'
-            })
-            .state('vehicle.create', {
-                url : '/create'
-            })
-            .state('vehicle.addRoute', {
-                url : '/add-route'
-            })
-
             .state('routes', {
                 url : '/routes',
                 templateUrl : 'app/components/routes/routes.html'
@@ -79,5 +69,29 @@
                     }
                 }
             })
+
+            .state('vehicle', {
+                url : '/vehicle',
+                templateUrl : 'app/components/vehicle/vehicle.html'
+            })
+            .state('vehicle.create', {
+                url : '/create'
+            })
+            .state('vehicle.detail', {
+                url : '/detail?vehicle_id',
+                views : {
+                    'vehicle_content' : {
+                        templateUrl : 'app/components/vehicle-details/vehicle-details.html'
+                    }
+                }
+            })
+            .state('vehicle.lists', {
+                url : '/lists',
+                views : {
+                    'vehicle_content' : {
+                        templateUrl : 'app/components/vehicle-list/vehicle-list.html'
+                    }
+                }
+            });
     }
 })();

@@ -38,7 +38,7 @@ class ApiUsersController extends Controller
         // check if user id is set
         if (!$userId || empty($userId)) {
             return $this->setStatusCode(self::BAD_REQUEST)
-                ->respondWithError('User ID is required.');
+                ->respondWithError(['message' => 'User ID is required.']);
         }
 
         // check if the user exists
@@ -46,7 +46,7 @@ class ApiUsersController extends Controller
 
         if (empty($user)) {
             return $this->setStatusCode(self::NOT_FOUND)
-                ->respondWithError('User does not exists.');
+                ->respondWithError(['message' => 'User does not exists.']);
         }
 
         // return user details
@@ -72,7 +72,7 @@ class ApiUsersController extends Controller
 
         if (empty($user)) {
             return $this->setStatusCode(self::NOT_FOUND)
-                ->respondWithError('User does not exists.');
+                ->respondWithError(['message' => 'User does not exists.']);
         }
 
         // update details

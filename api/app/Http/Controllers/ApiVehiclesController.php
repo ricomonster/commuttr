@@ -19,7 +19,7 @@ class ApiVehiclesController extends Controller
         if (!$userId || empty($userId)) {
             // return an error message
             return $this->setStatusCode(self::BAD_REQUEST)
-                ->respondWithError('User ID is required.');
+                ->respondWithError(['message' => 'User ID is required.']);
         }
 
         // check if user exists
@@ -28,7 +28,7 @@ class ApiVehiclesController extends Controller
         // check if the user exists
         if (empty($user)) {
             return $this->setStatusCode(self::NOT_FOUND)
-                ->respondWithError('User does not exists.');
+                ->respondWithError(['message' => 'User does not exists.']);
         }
 
         // validate
@@ -58,6 +58,32 @@ class ApiVehiclesController extends Controller
             'vehicle' => $vehicle->toArray()]);
     }
 
+    public function detail(Request $request)
+    {
+        // get vehicle_id
+        $vehicleId = $request->input('vehicle_id');
+
+        // check if vehicle_id is set or empty
+        if (!$vehicleId || empty($vehicleId)) {
+            // return an error message
+            return $this->setStatusCode(self::BAD_REQUEST)
+                ->respondWithError(['message' => 'Vehicle ID is required']);
+        }
+
+        // check if vehicle_id exists
+        $vehicle = Vehicle::where('id', '=', $vehicleId)->first();
+
+        if (empty($vehicle)) {
+            // return an error message
+            return $this->setStatusCode(self::NOT_FOUND)
+                ->respondWithError(['message' => 'Vehicle does not exists']);
+        }
+
+        // return vehicle details
+        return $this->respond([
+            'vehicle' => $vehicle->toArray()]);
+    }
+
     public function lists(Request $request)
     {
         $userId = $request->input('user_id');
@@ -66,7 +92,7 @@ class ApiVehiclesController extends Controller
         if (!$userId || empty($userId)) {
             // return an error message
             return $this->setStatusCode(self::BAD_REQUEST)
-                ->respondWithError('User ID is required.');
+                ->respondWithError(['message' => 'User ID is required.']);
         }
 
         // check if user exists
@@ -75,7 +101,7 @@ class ApiVehiclesController extends Controller
         // check if the user exists
         if (empty($user)) {
             return $this->setStatusCode(self::NOT_FOUND)
-                ->respondWithError('User does not exists.');
+                ->respondWithError(['message' => 'User does not exists.']);
         }
 
         // get the vehicles of the user
@@ -114,8 +140,8 @@ class ApiVehiclesController extends Controller
         // prepare the rules
         $rules = [
             'transportation_id' => 'required',
-            'vehicle_name' => 'required',
-            'plate_number' => 'required'];
+            'vehicle_name'      => 'required',
+            'plate_number'      => 'required'];
 
         // prepare the custom messages
         $messages = [

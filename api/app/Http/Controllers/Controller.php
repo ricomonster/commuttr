@@ -49,8 +49,7 @@ abstract class Controller extends BaseController
     public function respondWithError($message)
     {
         return $this->respond([
-            'errors' => [
-                'message' => $message]]);
+            'errors' => $message]);
     }
 
     /**

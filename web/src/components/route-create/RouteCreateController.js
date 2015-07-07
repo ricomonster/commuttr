@@ -103,7 +103,7 @@
                     // show errors in the form
                     ToastService.show('There are errors encountered.', 5000);
 
-                    self.formErrors = response.errors.message;
+                    self.formErrors = response.errors;
                 });
         };
 

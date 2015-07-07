@@ -19,6 +19,19 @@
         }
 
         .error-handler p { display: inline-table; margin: 5px 0; width: 100%; }
+
+        form .error-message {
+            background-color: transparent;
+            border-radius: 0;
+            color: rgb(244,67,54);
+            display: block;
+            margin: 0;
+            order: 3;
+            padding: 15px 0 5px;
+        }
+
+        .md-button .fa,
+        .md-button.md-fab md-icon.fa { font-size: 16px; height: auto; }
     </style>
 </head>
 <body ng-app="commuttrApp" layout="row">
@@ -46,9 +59,13 @@
     <script src="./app/components/header/header.js"></script>
     <script src="./app/components/landing/landing.js"></script>
     <script src="./app/components/route-create/route-create.js"></script>
-    <script src="./app/components/route-search/route-create.js"></script>
+    <script src="./app/components/route-search/route-search.js"></script>
     <script src="./app/components/routes/routes.js"></script>
     <script src="./app/components/sidebar/sidebar.js"></script>
+    <script src="./app/components/vehicle/vehicle.js"></script>
+    <script src="./app/components/vehicle-create/vehicle-create.js"></script>
+    <script src="./app/components/vehicle-details/vehicle-details.js"></script>
+    <script src="./app/components/vehicle-list/vehicle-list.js"></script>
 
     <script src="./app/services/auth/auth.js"></script>
     <script src="./app/services/storage/storage.js"></script>

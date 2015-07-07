@@ -29,7 +29,7 @@ class ApiRoutesController extends Controller
         if (empty($user)) {
             // user does not exists
             return $this->setStatusCode(self::NOT_FOUND)
-                ->respondWithError('User does not exists.');
+                ->respondWithError(['message' => 'User does not exists.']);
         }
 
         // validate the given coordinates
@@ -90,7 +90,7 @@ class ApiRoutesController extends Controller
         if (!$routeId || empty($routeId)) {
             // return an error message
             return $this->setStatusCode(self::BAD_REQUEST)
-                ->respondWithError('Route ID is required.');
+                ->respondWithError(['message' => 'Route ID is required.']);
         }
 
         // get route
@@ -102,7 +102,7 @@ class ApiRoutesController extends Controller
         // check if route exists
         if (empty($route)) {
             return $this->setStatusCode(self::NOT_FOUND)
-                ->respondWithError('Route does not exists.');
+                ->respondWithError(['message' => 'Route does not exists.']);
         }
 
         // return routes

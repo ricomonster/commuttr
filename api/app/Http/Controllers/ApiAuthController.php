@@ -21,8 +21,9 @@ class ApiAuthController extends Controller
 
         // validate if given credentials are valid
         if (Auth::once([
-            'email' => $request->input('email'),
-            'password' => $request->input('password')])) {
+            'email'     => $request->input('email'),
+            'password'  => $request->input('password')])) {
+
             // return user details
             return $this->respond([
                 'user' => Auth::user()]);
@@ -31,7 +32,7 @@ class ApiAuthController extends Controller
         // invalid credentials, send an error message
         return $this->setStatusCode(self::UNAUTHORIZED)
             ->respondWithError([
-                'auth' => ['Invalid email or password.']]);
+                'message' => 'Invalid email or password.']);
     }
 
     protected function validateLogin($request)
