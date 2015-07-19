@@ -71,7 +71,8 @@ class ApiVehiclesController extends Controller
         }
 
         // check if vehicle_id exists
-        $vehicle = Vehicle::where('id', '=', $vehicleId)->first();
+        $vehicle = Vehicle::with(['driver', 'transportationType'])
+            ->where('id', '=', $vehicleId)->first();
 
         if (empty($vehicle)) {
             // return an error message
@@ -105,7 +106,9 @@ class ApiVehiclesController extends Controller
         }
 
         // get the vehicles of the user
-        $vehicles = Vehicle::where('user_id', '=', $userId)->get();
+        $vehicles = Vehicle::where('user_id', '=', $userId)
+            ->orderBy('vehicle_name', 'ASC')
+            ->get();
 
         return $this->respond([
             'vehicles' => $vehicles->toArray()]);
@@ -114,15 +117,15 @@ class ApiVehiclesController extends Controller
     protected function validateTransportation($transportation)
     {
         // check if transportation_id is integer
-        if (is_int($transportation)) {
+        if (is_numeric($transportation)) {
             // return ID
             return $transportation;
         }
 
         // check first if transportation already exists in the database
-        $tranportationExists = Transportation::where('vehicle_type', '=', strtolower($transportation))->first();
+        $transportationExists = Transportation::where('vehicle_type', '=', strtolower($transportation))->first();
 
-        if (empty($tranportationExists)) {
+        if (empty($transportationExists)) {
             // create the transportation
             $newTransportation = Transportation::create([
                 'vehicle_type' => $transportation]);
@@ -132,7 +135,7 @@ class ApiVehiclesController extends Controller
         }
 
         // return the ID of the existing transportation
-        return $tranportationExists->id;
+        return $transportationExists->id;
     }
 
     protected function validateVehicleCreate($data)

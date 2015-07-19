@@ -3,14 +3,24 @@
 
     angular.module('commuttrApp.components.vehicleCreate')
         .controller('VehicleCreateController', [
-            '$mdDialog', 'AuthService', 'ToastService', 'VehicleCreateService',
+            '$mdDialog', '$rootScope', 'AuthService', 'ToastService', 'VehicleCreateService',
             VehicleCreateController]);
 
-    function VehicleCreateController($mdDialog, AuthService, ToastService, VehicleCreateService) {
+    function VehicleCreateController($mdDialog, $rootScope, AuthService, ToastService,
+                                     VehicleCreateService) {
         var self = this;
+
+        self.errors = [];
+        self.transportationList = [];
         self.user = AuthService.user();
         self.vehicle = [];
-        self.errors = [];
+
+        VehicleCreateService.transportation()
+            .success(function(response) {
+                if (response.vehicles) {
+                    self.transportationList = response.vehicles;
+                }
+            });
 
         /**
          * Close the dialog window
@@ -27,16 +37,20 @@
         self.createVehicle = function() {
             var vehicle = self.vehicle;
 
+            self.errors = [];
+
             // show loader
             ToastService.show('Saving...');
 
             // do an API call
             VehicleCreateService
                 .create(self.user.id, vehicle.vehicle_name, vehicle.plate_number,
-                    vehicle.details)
+                    vehicle.transportation, vehicle.details)
                 .success(function(response) {
                     if (response.vehicle) {
                         // close dialog
+                        $mdDialog.cancel();
+
                         // empty the scope
                         self.vehicle = [];
 
@@ -44,6 +58,7 @@
                         ToastService.show('You have successfully added a vehicle.', 5000);
 
                         // broadcast
+                        $rootScope.$broadcast('new-vehicle-added');
                     }
                 })
                 .error(function(response) {

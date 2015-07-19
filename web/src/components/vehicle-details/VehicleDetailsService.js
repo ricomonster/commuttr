@@ -7,7 +7,7 @@
     function VehicleDetailsService($http, CONFIG) {
         return {
             detail : function(id) {
-                return $http.get(CONFIG.API_URL + 'vehicle/detail?vehicle_id=' + id);
+                return $http.get(CONFIG.API_URL + 'vehicles/detail?vehicle_id=' + id);
             }
         }
     }

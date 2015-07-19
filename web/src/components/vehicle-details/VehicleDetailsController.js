@@ -2,10 +2,12 @@
     'use strict';
 
     angular.module('commuttrApp.components.vehicleDetails')
-        .controller('VehicleDetailsController', ['$stateParams', 'VehicleDetailsService', VehicleDetailsController]);
+        .controller('VehicleDetailsController', ['$stateParams', 'VehicleDetailsService',
+        VehicleDetailsController]);
 
     function VehicleDetailsController($stateParams, VehicleDetailsService) {
         var self = this;
+
         self.vehicle = [];
 
         // fetch vehicle details
@@ -14,6 +16,6 @@
                 if (response.vehicle) {
                     self.vehicle = response.vehicle;
                 }
-            })
+            });
     }
 })();

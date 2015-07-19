@@ -62,20 +62,16 @@
                 }
             })
             .state('routes.create', {
-                url : '/create',
+                url : '/create?vehicle_id',
                 views : {
                     'routes_content' : {
                         templateUrl : 'app/components/route-create/create.html'
                     }
                 }
             })
-
             .state('vehicle', {
                 url : '/vehicle',
                 templateUrl : 'app/components/vehicle/vehicle.html'
-            })
-            .state('vehicle.create', {
-                url : '/create'
             })
             .state('vehicle.detail', {
                 url : '/detail?vehicle_id',

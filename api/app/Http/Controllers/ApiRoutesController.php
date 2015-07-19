@@ -5,6 +5,7 @@ use Illuminate\Http\Request;
 use Commuttr\Http\Requests;
 use Commuttr\Coordinates;
 use Commuttr\Route;
+use Commuttr\Vehicle;
 use Commuttr\ViaRoutes;
 use Commuttr\User;
 use Validator;
@@ -13,6 +14,15 @@ class ApiRoutesController extends Controller
 {
     public function create(Request $request)
     {
+        $userId     = $request->input('user_id');
+        $vehicleId  = $request->input('vehicle_id');
+
+        // check if vehicle_id is set
+        if ($vehicleId && !empty($vehicleId)) {
+            // check if vehicle_id exists
+            $vehicle = Vehicle::where('id', '=', $vehicleId)->first();
+        }
+
         // validate first the request
         $messages = $this->validateRouteCreation($request);
 
@@ -24,7 +34,7 @@ class ApiRoutesController extends Controller
         }
 
         // check if the user exists
-        $user = User::where('id', '=', $request->input('user_id'))->first();
+        $user = User::where('id', '=', $userId)->first();
 
         if (empty($user)) {
             // user does not exists
@@ -78,6 +88,11 @@ class ApiRoutesController extends Controller
             ->where('id', '=', $route->id)
             ->first();
 
+        // check if vehicle details
+        if ($vehicle) {
+
+        }
+
         return $this->respond([
             'route' => $route->toArray()]);
     }
@@ -124,6 +139,34 @@ class ApiRoutesController extends Controller
         // return results
         return $this->respond([
             'results' => $results->toArray()]);
+    }
+
+    public function viewed(Request $request)
+    {
+        $routeId = $request->input('route_id');
+
+        // check if route_id is set
+        if (!$routeId || empty($routeId)) {
+            // return an error message
+            return $this->setStatusCode(self::BAD_REQUEST)
+                ->respondWithError(['message' => 'Route ID is required.']);
+        }
+
+        // get route
+        $route = Route::where('id', '=', $routeId)->first();
+
+        // check if route exists
+        if (empty($route)) {
+            return $this->setStatusCode(self::NOT_FOUND)
+                ->respondWithError(['message' => 'Route does not exists.']);
+        }
+
+        // increment the number of views
+        $route->views += 1;
+        $route->save();
+
+        // return nothing
+        return $this->respond([]);
     }
 
     protected function validateCoordinates($coordinates)

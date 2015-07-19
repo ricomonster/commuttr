@@ -30,6 +30,19 @@
             <div class="form-wrapper-content" layout-padding>
                 <h5 class="md-headline" style="margin: 10px 0;">Create a route</h5>
                 <form ng-submit="rcc.submitRoute()">
+                    <div class="vehicle-details" ng-if="rcc.vehicle">
+                        <h5 class="md-subhead" style="margin-bottom: 5px;">
+                            Vehicle Details
+                        </h5>
+                        <p class="detail">
+                            <strong>Name:</strong>
+                            <span>{{ rcc.vehicle.vehicle_name }}</span>
+                        </p>
+                        <p class="detail">
+                            <strong>Plate number:</strong>
+                            <span>{{ rcc.vehicle.plate_number | uppercase }}</span>
+                        </p>
+                    </div>
                     <md-input-container>
                         <label>Route name</label>
                         <input type="text" ng-model="rcc.route.route_name">

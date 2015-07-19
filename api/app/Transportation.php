@@ -44,6 +44,6 @@ class Transportation extends Model
      */
     public function vehicle()
     {
-        return $this->belongsTo('Commuttr\Vehicle', 'user_id');
+        return $this->hasMany('Commuttr\Vehicle');
     }
 }

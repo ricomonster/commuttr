@@ -18,7 +18,7 @@ class Route extends Model
      * @var array
      */
     protected $fillable = ['user_id', 'route_name', 'details', 'origin', 'destination',
-        'vice_versa'];
+        'vice_versa', 'views'];
 
     /**
      * User/Route Relationship
@@ -48,6 +48,16 @@ class Route extends Model
     public function modeOfTransportation()
     {
         return $this->belongsToMany('Commuttr\Transportation', 'route_transportation', 'route_id', 'transportation_id');
+    }
+
+    /**
+     * Vehicle Relationship
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function vehicles()
+    {
+        return $this->belongsToMany('Commuttr\Vehicle', 'vehicle_routes', 'route_id', 'vehicle_id');
     }
 
     /**

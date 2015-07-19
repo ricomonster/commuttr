@@ -11,7 +11,9 @@
 
     function themeConfiguration($mdThemingProvider) {
         $mdThemingProvider.theme('default')
-            .primaryPalette('light-green')
+            .primaryPalette('light-green', {
+                'default': '700'
+            })
             .accentPalette('blue');
     }
 

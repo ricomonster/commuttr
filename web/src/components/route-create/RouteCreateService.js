@@ -6,7 +6,14 @@
 
     function RouteCreateService($http, AuthService, CONFIG) {
         return {
-            create: function (name, destination, origin, viceVersa, viaRoutes, vehicles, coordinates) {
+            create: function (name, destination, origin, viceVersa, viaRoutes, vehicles, coordinates, vehicleId) {
+                var urlParameter = '?user_id=' + AuthService.user().id;
+
+                // check if vehicleId is set
+                if (vehicleId) {
+                    urlParameter += '&vehicle_id=' + vehicleId;
+                }
+
                 // prepare the data to be sent to the API
                 var data = 'route_name=' + (name || '') + '&destination=' + (destination || '') +
                     '&origin=' + (origin || '') + '&vice_versa=' + (viceVersa || 0);
@@ -38,14 +45,13 @@
                     }
                 }
 
-                return $http.post(CONFIG.API_URL + 'routes/create?user_id=' +
-                AuthService.user().id, data);
+                return $http.post(CONFIG.API_URL + 'routes/create' + urlParameter, data);
             },
             transportation : function() {
                 return $http.get(CONFIG.API_URL + 'transportation/vehicle_lists');
             },
-            vehicles : function(id) {
-                return $http.get(CONFIG.API_URL + 'vehicles/lists?user_id=' + id);
+            vehicleDetails : function(vehicleId) {
+                return $http.get(CONFIG.API_URL + 'vehicles/detail?vehicle_id=' + vehicleId);
             }
         }
     }

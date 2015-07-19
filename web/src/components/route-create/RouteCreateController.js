@@ -3,14 +3,13 @@
 
     angular.module('commuttrApp.components.routeCreate')
         .controller('RouteCreateController', [
-            'AuthService', 'ToastService', 'StorageService', 'RouteCreateService',
-            RouteCreateController]);
+            '$stateParams', 'AuthService', 'ToastService', 'StorageService',
+            'RouteCreateService', RouteCreateController]);
 
-    function RouteCreateController(AuthService, ToastService, StorageService,
+    function RouteCreateController($stateParams, AuthService, ToastService, StorageService,
                                    RouteCreateService) {
         var self = this;
 
-        self.vehicleLists = [];
         self.route = [];
         self.route.coordinates = [];
         self.route.vehicles = [];
@@ -20,6 +19,7 @@
             location : ''
         }];
 
+        self.vehicle = [];
         self.formErrors = [];
 
         // map variables
@@ -42,8 +42,26 @@
                     }
                 });
 
+            // check if vehicle_id parameter is added
+            if ($stateParams.vehicle_id) {
+                // fetch vehicle details
+                self.getVehicleDetails();
+            }
+
             // run google maps
             self.initializeGoogleMaps();
+        };
+
+        self.getVehicleDetails = function() {
+            var vehicleId = $stateParams.vehicle_id;
+
+            // get vehicle details
+            RouteCreateService.vehicleDetails(vehicleId)
+                .success(function(response) {
+                    if (response.vehicle) {
+                        self.vehicle = response.vehicle;
+                    }
+                });
         };
 
         /**
@@ -83,13 +101,14 @@
             // clear errors
             self.formErrors = [];
 
-            var route = self.route;
+            var route = self.route,
+                vehicleId = (self.vehicle.id || '');
 
             // send request to the API
             // name, destination, origin, viceVersa, viaRoutes, vehicles, coordinates
             RouteCreateService
                 .create(route.route_name, route.destination, route.origin, route.vice_versa,
-                route.via_route, route.vehicles, route.coordinates)
+                route.via_route, route.vehicles, route.coordinates, vehicleId)
                 .success(function(response) {
                     if (response.route) {
                         // clear the map and form

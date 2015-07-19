@@ -28,6 +28,17 @@ ng-controller="VehicleCreateController as vcc">
                     {{ vcc.errors.plate_number[0] }}
                 </span>
             </md-input-container>
+            <div class="transportation-list">
+                <md-select placeholder="Type of transportation" ng-model="vcc.vehicle.transportation">
+                    <md-option ng-repeat="transportation in vcc.transportationList"
+                    value="{{transportation.id}}">
+                        {{transportation.vehicle_type | uppercase}}
+                    </md-option>
+                </md-select>
+                <span class="error-message" ng-if="vcc.errors.transportation_id">
+                    {{ vcc.errors.transportation_id[0] }}
+                </span>
+            </div>
             <md-input-container>
                 <label>Details (optional)</label>
                 <textarea ng-model="vcc.vehicle.details"></textarea>

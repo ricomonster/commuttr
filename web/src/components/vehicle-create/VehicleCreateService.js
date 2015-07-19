@@ -6,10 +6,14 @@
 
     function VehicleCreateService($http, CONFIG) {
         return {
-            create : function(userId, vehicleName, plateNumber, details) {
+            create : function(userId, vehicleName, plateNumber, transportation, details) {
                 return $http.post(CONFIG.API_URL + 'vehicles/create?user_id=' + userId,
                     'vehicle_name=' + (vehicleName || '') + '&plate_number=' +
-                    (plateNumber || '') + '&details=' + (details || ''));
+                    (plateNumber || '') + '&transportation_id=' + (transportation || '') +
+                    '&details=' + (details || ''));
+            },
+            transportation : function() {
+                return $http.get(CONFIG.API_URL + 'transportation/vehicle_lists');
             }
         }
     }

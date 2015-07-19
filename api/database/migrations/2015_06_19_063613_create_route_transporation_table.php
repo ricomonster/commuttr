@@ -13,10 +13,8 @@ class CreateRouteTransporationTable extends Migration
     public function up()
     {
         Schema::create('route_transportation', function (Blueprint $table) {
-            $table->increments('id');
             $table->integer('route_id')->unsigned();
             $table->integer('transportation_id')->unsigned();
-            $table->timestamps();
         });
     }
 

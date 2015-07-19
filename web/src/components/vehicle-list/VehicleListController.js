@@ -3,10 +3,10 @@
 
     angular.module('commuttrApp.components.vehicleList')
         .controller('VehicleListController', [
-            '$state', '$mdDialog', 'AuthService', 'ToastService', 'VehicleListService',
-            VehicleListController]);
+            '$mdDialog', '$rootScope', '$state', 'AuthService', 'ToastService',
+            'VehicleListService', VehicleListController]);
 
-    function VehicleListController($state, $mdDialog, AuthService, ToastService,
+    function VehicleListController($mdDialog, $rootScope, $state, AuthService, ToastService,
                                    VehicleListService) {
         var self = this;
 
@@ -52,6 +52,16 @@
 
             });
         };
+
+        /**
+         * Listens for broadcast event telling there's a new vehicle added
+         */
+        $rootScope.$on('new-vehicle-added', function() {
+            ToastService.show('Loading...');
+
+            // fetch vehicles
+            self.fetchVehicles();
+        });
 
         // fetch the user's vehicles
         self.fetchVehicles();
